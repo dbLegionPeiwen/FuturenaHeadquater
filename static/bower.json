@@ -1,0 +1,26 @@
+{
+  "name": "org.futrena",
+  "version": "0.0.1",
+  "homepage": "https://github.com/samsara0404/frontend",
+  "authors": [
+    "lucky7h <hao.qiao7@gmail.com>"
+  ],
+  "description": "WEB APP",
+  "main": "/css/app.css",
+  "keywords": [
+    "app"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.4",
+    "angular-ui-router": "~0.2.13",
+    "jquery": "~2.1.3"
+  }
+}

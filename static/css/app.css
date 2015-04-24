@@ -1,0 +1,379 @@
+/**
+ * Created by haoqiao on 15-04-04.
+ */
+
+
+.font{
+	font-family: 'Raleway', sans-serif;
+	font-weight: 100;
+}
+
+
+#next{
+	padding-left:10px;
+	padding-right:10px;
+	vertical-align: middle;
+	border-radius: 5px;
+	font-size:30px;
+	height:50px;
+	color:rgb(255,255,220);
+	cursor: pointer;
+	display: inline-block;
+}
+
+#previous{
+	padding-left:10px;
+	padding-right:10px;
+	vertical-align: middle;
+	border-radius: 5px;
+	font-size:30px;
+	height:50px;
+	color:rgb(255,255,220);
+	cursor: pointer;
+	display: inline-block;
+}
+
+.solgan{
+	display:inline-block;
+	font-size:25px;
+	margin-left: 10px;
+}
+
+.content{
+	height:200px;
+}
+
+.content:nth-child(3){
+	color:white;
+	font-size:40px;
+	display:none;
+}
+
+#secondContent a:hover{
+	text-decoration: none;
+}
+
+.content:nth-child(4){
+	display:none;
+}
+
+#next:hover{
+	background-color:rgba(255,255,220,0.4);
+	color:rgba(255,255,220,0.8);
+}
+
+#previous:hover{
+	background-color:rgba(255,255,220,0.4);
+	color:rgba(255,255,220,0.8);
+}
+
+#submit{
+	color:rgb(255,153,0);
+	text-decoration: none;
+	float:left;
+	margin-left:30px;
+}
+
+#submit div{
+	display:inline-block;
+	height:50px;
+	cursor: pointer;
+	padding-top: 12px;
+	padding-left:5px;
+	padding-right:5px;
+	border-radius:5px;
+}
+
+#submit :hover{
+	background-color: rgba(255,255,230,0.5);
+}
+
+#webName{
+	color:rgb(255,153,0);
+	text-decoration: none;
+	margin-left:-8%;
+	display:none;
+}
+
+#webName div{
+	display:inline-block;
+	height:50px;
+	cursor: pointer;
+	font-size:40px;
+	padding-left:15px;
+	padding-right:15px;
+	border-radius:10px;
+}
+
+#webName :hover{
+	background-color: rgba(132,132,132,0.2);
+}
+
+/*#login{
+	color:rgb(255,255,230);
+	text-decoration: none;
+	float:right;
+	margin-right:30px;
+}
+
+#login div{
+	display:inline-block;
+	height:50px;
+	cursor: pointer;
+	padding-top: 12px;
+	padding-left:5px;
+	padding-right:5px;
+}
+
+#login :hover{
+	background-color: rgba(255,255,230,0.5);
+}
+
+#signUp{
+	color:rgb(255,255,230);
+	text-decoration: none;
+	float:right;
+	margin-right:20px;
+}
+
+#signUp div{
+	display:inline-block;
+	height:50px;
+	cursor: pointer;
+	padding-top: 12px;
+	padding-left:5px;
+	padding-right:5px;
+}
+
+#signUp :hover{
+	background-color: rgba(255,255,230,0.5);
+}*/
+
+#shoppingCart{
+	color:rgb(255,153,0);
+	text-decoration: none;
+	float:right;
+	margin-right:20px;
+}
+
+#shoppingCart div{
+	display:inline-block;
+	height:50px;
+	cursor: pointer;
+	padding-top: 12px;
+	padding-left:5px;
+	padding-right:5px;
+	border-radius:5px;
+}
+
+#shoppingCart :hover{
+	background-color: rgba(255,255,230,0.5);
+}
+
+.overlay{
+	position:fixed; 
+	background:rgba(0,0,0,0.6); 
+	z-index:5; 
+	width:100%; 
+	height:100%;
+}
+
+.firstLayer{
+	z-index:3;
+}
+
+#home {
+	text-align: center;
+	width: 100%;
+	background-color: white;
+	position: relative;
+	top: 40px;
+}
+
+#homeNav{
+	background-color: rgb(32,32,32);
+	top:0;
+	width:100%;
+	height:50px;
+	vertical-align: center;
+}
+
+#homeSearch{
+	padding-top:2px;
+	margin-left:30px;
+	width:200px;
+}
+
+#home .headSection {
+	position: fixed;
+	width: 100%;
+	background-color: white;
+	overflow:hidden;
+	top:0;
+}
+
+#timeSlide{
+	margin-top:10px;
+	height: 30px;
+}
+
+#home #titleSection{
+	padding-top: 1px;
+	padding-bottom: 20px;
+	height:100vh;
+}
+
+.content div{
+	color: rgb(255,255,255);
+}
+
+#home #titleSection .imageMain{
+	width:100%;
+	height:100hv;
+	position:absolute;
+	z-index: -1;
+}
+
+
+#home .title{
+	width: 100%;
+	max-width:1500px;
+	text-align: center;
+	margin-top: 50px;
+	margin-bottom:50px;
+	font-size: 70px;
+	color:rgb(255,255,255);
+}
+
+#slogan{
+	font-size:20px;
+	margin-left:11%;
+}
+
+#home .button {
+	padding: 10px 50px;
+	font-size: 20px;
+	background-color: rgba(0,0,0,0);
+	color:rgb(255,255,200);
+	border: solid 3px rgb(255,255,200);
+	border-radius: 5px;
+	margin-top: 30px;
+}
+
+#homepageButtons{
+	padding-top:50px;
+}
+
+#home .viewNavigator {
+	font-size: 25px;
+	width: 100%;
+	height: 70px;
+	position: static;
+	background-color: white;
+	margin-top: 10px;
+}
+
+#home .viewNavigator .link {
+	text-decoration: none;
+	margin-left: 150px;
+	margin-right: 150px;
+	color:rgb(255,153,0);
+	padding-bottom: 27px;
+}
+
+#home .viewNavigator .selected {
+	border-bottom: solid 3px;
+	padding-bottom: 12px;
+	border-color:rgb(255,153,0);
+}
+
+.filter{
+	cursor: pointer;
+	color:rgb(255,153,0)
+}
+
+#home .viewNavigator .unselected {
+	border-bottom: solid 0px;
+}
+
+#home .productNavigator {
+	height: 60px;
+	background-color: white;
+	color: white;
+	position: fixed-top;
+	text-align: center;
+	margin-left:25%;
+	width: 50%;
+	vertical-align: center;
+}
+
+#home .productNavigator .link{
+	color: black;
+	text-decoration: none;
+	font-size: 12px;
+	margin-right:30px;
+}
+
+#home .productNavigator .selected{
+	border-bottom: solid 2px;
+	padding-bottom: 2px;
+	border-color: rgb(0,102,51);
+}
+
+#home .productNavigator .link .subLink{
+	position: relative; 
+	top: 15px;
+}
+
+#home .productBoard {
+	width: 100%;
+	height: auto;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#home .productBoard .block {
+	float: left;
+	margin: 30px 20px;
+}
+
+#home .productBoard .mobileBlock {
+	margin: 10px auto;
+}
+
+.userSignInUp {
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	width: 500px;
+	height: auto;
+	background-color: white;
+	border-radius: 2px;
+	z-index: 9999;
+	top: 100px;
+}
+
+.login {
+	width: 100%;
+	height: 400px;
+}
+
+.login .loginHeader {
+	width: 100%;
+	padding-top: 10px;
+	padding-bottom: 8px;
+	text-align: center;
+	background-color: #6699ff;
+}
+
+.disablePage {
+	opacity: 0.5;
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+
+.disableScroll {
+	overflow: hidden;
+}
+

@@ -1,0 +1,19 @@
+<!--Author: Hao Qiao-->
+
+<div id="product">
+    <a ng-show="home()" ui-sref="product({productID: productID})">
+        <div class="image">
+            <img style="width: 100%; height: 100%" src="/images/banner1.jpg">
+        </div>
+    </a>
+
+    <a ng-show="admin()" ui-sref="productAdmin({id: productID})">
+        <div class="image">
+            <img style="width: 100%; height: 100%" src="/images/banner1.jpg">
+        </div>
+    </a>
+    <a style="color: white; font-size: 20px" ng-show="home()" ui-sref="product({productID: productID})">{{productName}}</a>
+    <a style="color: white; font-size: 20px" ng-show="admin()" ui-sref="productAdmin({id: productID})">{{productName}}</a>
+
+</div>
+

@@ -1,0 +1,41 @@
+.adminHeader {
+    width: 100%;
+    background-color: black;
+    color: white;
+    padding-top:10px;
+    padding-bottom: 7px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    font-size: 30px;
+    text-align: center;
+}
+
+.adminNav {
+    background-color: grey;
+    position: fixed;
+    width: 100%;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    top: 60px;
+}
+
+.adminNav .elem{
+    color: white;
+    font-size: 20px;
+    padding-left:15px;
+    padding-right: 15px;
+}
+
+.adminNav .textDecoration {
+    text-decoration: underline;
+}
+
+#admin {
+    background-color: #eee;
+}
+
+#adminSearch {
+    margin-top: 85px;
+}

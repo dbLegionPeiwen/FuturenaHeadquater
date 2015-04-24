@@ -1,0 +1,259 @@
+<div id="submission">
+    <nav class="homeNav">
+        <a class="webName1" href="#/admin">
+            <div style="font-size: 35px">Admin Console</div>
+        </a>
+    </nav>
+    <br>
+    <div class="container" style="float:left; width:50%">
+        <form class="form-horizontal" ng-submit="submitProduct()">
+            <legend>
+                Product Information
+            </legend>
+
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">Product Name</label>
+
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" placeholder="" ng-model="previewProduct.productName"
+                           required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">Detailed
+                    Description</label>
+
+                <div class="col-sm-10">
+                    <textarea class="form-control" id="msg" name="msg" cols="10" rows="6" placeholder=""
+                              ng-model="previewProduct.description" required></textarea>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">Selling Price</label>
+
+                <div class="col-sm-10">
+                    <input type="number" step="0.01" min="0" class="form-control" placeholder="USD" ng-model="previewProduct.price" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">Material</label>
+
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" placeholder="" ng-model="previewProduct.material">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Size</label>
+
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" placeholder="" ng-model="previewProduct.width">
+                </div>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" placeholder="" ng-model="previewProduct.height">
+                </div>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" placeholder="" ng-model="previewProduct.length">
+                </div>
+                <div class="btn-group col-sm-2" role="group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                            aria-expanded="false" id="unitTitle">
+                        {{unit}}
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li class="unitSelect" ng-model="unit" ng-click="unit='Ft.'"><a>Ft.</a></li>
+                        <li class="unitSelect" ng-model="unit" ng-click="unit='Meters'"><a>Meters</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">Video URL</label>
+
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="" placeholder="" ng-model="videoUrl">
+                </div>
+            </div>
+            <div class="form-group row row-margin">
+                <label class="col-md-3 control-label" style="margin-left:10px">Demonstration max 3</label>
+
+                <div class="col-md-6">
+                    <input type="file" onchange="angular.element(this).scope().demon()" ng-model="demonBuffer" multiple
+                           id="demonUpload" style="margin-top:5px" accept='image/*'/>
+                </div>
+            </div>
+            <div class="form-group row row-margin">
+                <label style="margin-left:25px">Current Product State: <span style="color: blue">{{previewProduct.productState}}</span></label>
+
+                <div class="btn-group" role="group" style="margin-left: 20px;">
+
+                    <button type="button" class="btn btn-default dropdown-toggle " data-toggle="dropdown"
+                            aria-expanded="false">
+                        New State
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li class="unitSelect" ng-model="previewProduct.productState"
+                            ng-click="previewProduct.productState='pending'">
+                            <a>Pending</a></li>
+                        <li class="unitSelect" ng-model="previewProduct.productState"
+                            ng-click="previewProduct.productState='testing'"><a>Testing</a>
+                        </li>
+                        <li class="unitSelect" ng-model="previewProduct.productState"
+                            ng-click="previewProduct.productState='released'"><a>Released</a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+
+            <div class="form-group row row-margin">
+                <label style="margin-left:25px">Current Product Category: <span style="color: blue">{{previewProduct.productType}}</span></label>
+
+                <div class="btn-group" role="group" style="margin-left: 20px">
+
+                    <button type="button" class="btn btn-default dropdown-toggle " data-toggle="dropdown"
+                            aria-expanded="false">
+                        New Category
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li class="unitSelect" ng-model="previewProduct.productType"
+                            ng-click="previewProduct.productType='fashion'">
+                            <a>Fashion</a></li>
+                        <li class="unitSelect" ng-model="previewProduct.productType"
+                            ng-click="previewProduct.productType='electronic'"><a>Electronic</a>
+                        </li>
+                        <li class="unitSelect" ng-model="previewProduct.productType"
+                            ng-click="previewProduct.productType='health'"><a>Health</a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+            <br>
+
+            <div class="form-group">
+                <label class="col-sm-3" style="margin-left: 10px">Owner:</label>
+                <div class="col-sm-5">
+                <input type="email" class="form-control" placeholder="" ng-model="previewProduct.owner"
+                       required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3" style="margin-left: 10px">Designer:</label>
+                <div class="col-sm-5">
+                    <input type="email" class="form-control" placeholder="" ng-model="previewProduct.designer"
+                           required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3" style="margin-left: 10px">Regular User:</label>
+                <div class="col-sm-5">
+                    <input type="email" class="form-control" placeholder="" ng-model="previewProduct.regular"
+                           required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3" style="margin-left: 10px">US Area Delivery Fee:</label>
+                <div class="col-sm-5">
+                    <input type="number" step="0.01" min="0" class="form-control" placeholder="" ng-model="previewProduct.deliveryFeeUS">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3" style="margin-left: 10px">Canada Area Delivery Fee:</label>
+                <div class="col-sm-5">
+                    <input type="number" step="0.01" min="0" class="form-control" placeholder="" ng-model="previewProduct.deliveryFeeCA">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3" style="margin-left: 10px">China Area Delivery Fee:</label>
+                <div class="col-sm-5">
+                    <input type="number" step="0.01" min="0" class="form-control" placeholder="" ng-model="previewProduct.deliveryFeeCH">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2" style="margin-left: 10px">Owner Commission Rate:</label>
+                <div class="col-sm-2">
+                    <Span>CNY</Span><input type="number" step="0.01" min="0" class="form-control" placeholder="" ng-model="productRate.ownerCNY">
+                </div>
+
+                <div class="col-sm-2">
+                    <Span>USD</Span><input type="number" step="0.01" min="0" class="form-control" placeholder="" ng-model="productRate.ownerUSD">
+                </div>
+
+                <div class="col-sm-2">
+                    <Span>CAD</Span><input type="number" step="0.01" min="0" class="form-control" placeholder="" ng-model="productRate.ownerCAD">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2" style="margin-left: 10px">Designer Commission Rate:</label>
+                <div class="col-sm-2">
+                    <Span>CNY</Span><input type="number" step="0.01" min="0" class="form-control" placeholder="" ng-model="productRate.designerCNY">
+                </div>
+
+                <div class="col-sm-2">
+                    <Span>USD</Span><input type="number" step="0.01" min="0" class="form-control" placeholder="" ng-model="productRate.designerUSD">
+                </div>
+
+                <div class="col-sm-2">
+                    <Span>CAD</Span><input type="number" step="0.01" min="0" class="form-control" placeholder="" ng-model="productRate.designerCAD">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2" style="margin-left: 10px">Regular Commission Rate:</label>
+                <div class="col-sm-2">
+                    <Span>CNY</Span><input type="number" step="0.01" min="0" class="form-control" placeholder="" ng-model="productRate.regularCNY">
+                </div>
+
+                <div class="col-sm-2">
+                    <Span>USD</Span><input type="number" step="0.01" min="0" class="form-control" placeholder="" ng-model="productRate.regularUSD">
+                </div>
+
+                <div class="col-sm-2">
+                    <Span>CAD</Span><input type="number" step="0.01" min="0" class="form-control" placeholder="" ng-model="productRate.regularCAD">
+                </div>
+            </div>
+            <br><br>
+            <button type="Submit" class="btn btn-success"
+                    style="margin-left:10px; width:300px">Submit
+            </button>
+
+            <button type="button" class="btn btn-danger"
+                    style="margin-left:50px; width:300px" ng-click="deleteProduct()">Delete
+            </button>
+
+        </form>
+    </div>
+    <br><br>
+
+    <form style="width:45%;float:right">
+
+        <legend>
+           Product Images
+        </legend>
+
+        <div><img id="display1" style="height:200px; width: 300px; margin-top: 10px; float:left; margin-right:10px">
+        </div>
+        <div><img id="display2" style="height:200px; width: 300px; margin-top: 10px; float:left; margin-right:10px">
+        </div>
+        <div><img id="display3" style="height:200px; width: 300px; margin-top: 10px; float:left; margin-right:10px">
+        </div>
+        <div><img id="display4" style="height:200px; width: 300px; margin-top: 10px; float:left; margin-right:10px">
+        </div>
+        <div><img id="display5" style="height:200px; width: 300px; margin-top: 10px; float:left; margin-right:10px">
+        </div>
+    </form>
+</div>
+

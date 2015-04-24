@@ -1,0 +1,22 @@
+#userPage .sidebar{
+	float:left;
+	width:15%;
+	height:100vh;
+	margin-top:5px;
+	margin-left	:5px;
+	background-color:black;
+}
+
+#userPage .title{
+	color: white;
+	font-size:28px;
+	cursor:pointer;
+}
+
+#userPage .sideItem:hover{
+	text-decoration: none;
+};
+
+#userPage .sideItemAlt{
+	font-size:20px;
+}

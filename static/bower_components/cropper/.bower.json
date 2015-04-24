@@ -1,0 +1,56 @@
+{
+  "name": "cropper",
+  "description": "A simple jQuery image cropping plugin.",
+  "version": "0.9.1",
+  "main": [
+    "dist/cropper.js",
+    "dist/cropper.css"
+  ],
+  "keywords": [
+    "image",
+    "cropping",
+    "jquery",
+    "plugin",
+    "html",
+    "css",
+    "javacript",
+    "front-end",
+    "web",
+    "development"
+  ],
+  "homepage": "https://github.com/fengyuanchen/cropper",
+  "authors": [
+    "Fengyuan Chen"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "tests",
+    "test",
+    "examples",
+    "assets",
+    "demos",
+    "docs",
+    "_*"
+  ],
+  "dependencies": {
+    "jquery": ">= 1.9.0"
+  },
+  "devDependencies": {
+    "jquery": "~1.11.2",
+    "bootstrap": "~3.3.2",
+    "qunit": "~1.17.1"
+  },
+  "_release": "0.9.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.9.1",
+    "commit": "a0d6d7a476fcef8700023401111b1a7433b99b42"
+  },
+  "_source": "git://github.com/fengyuanchen/cropper.git",
+  "_target": "~0.9.1",
+  "_originalSource": "cropper",
+  "_direct": true
+}

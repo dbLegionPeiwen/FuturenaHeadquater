@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Implementation-Title: SpringBootFramework
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: org.framework
+Build-Jdk: 1.8.0_05
+Built-By: haoqiao
+Created-By: IntelliJ IDEA
+Main-Class: Server.SpringBootFrameworkApplication
+

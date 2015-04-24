@@ -1,0 +1,37 @@
+
+<div class="userSignInUp">
+	<div class="login" ng-show="State=='login'">
+		<div class="loginHeader">
+			<p style="color: white; font-size: 30px">SIGN IN</p>
+		</div>
+		<div
+			style="width: 80%; margin-left: auto; margin-right: auto; position: absolute; top: 20%; left: 10%">
+			<div class="alert alert-danger" role="alert" ng-show="errorMessage">{{errorMessage}}</div>
+		</div>
+		<form
+			style="width: 80%; position: relative; top: 60px; margin-left: auto; margin-right: auto"
+			ng-submit="auth()">
+
+			<div class="form-group">
+				<label for="email"></label> <input type="email"
+					class="form-control input-lg" id="email" placeholder="Email"
+					required ng-model="email">
+			</div>
+
+			<div class="form-group">
+				<label for="password"></label> <input type="password"
+					class="form-control input-lg" id="password" placeholder="Password"
+					required ng-model="password">
+			</div>
+
+			<br>
+			<br>
+			<button type="submit" class="btn btn-primary">SIGN IN</button>
+			<a
+				ng-click="State='register'; username=null; password=null; errorMessage=null"
+				href="" style="margin-left: 130px">Sign Up</a> <a ng-click=""
+				href="" style="margin-left: 10px">Forgot Passsword</a>
+		</form>
+	</div>
+	<register ng-show="State=='register'"></register>
+</div>

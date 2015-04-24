@@ -1,0 +1,30 @@
+<div id="adminSearch" ng-show="adminState==true">
+    <header style="text-align: center; background-color: #6699ff; font-size: 30px; color: white">Advanced Search</header>
+    <nav style="width: 100%; background-color: #aaa; text-align: center; font-size: 25px;">
+        <a style="color: white" ng-click="searchView= 'product'; a1='selected'; a2='unselected'" ng-class="a1" ui-sref="admin.search">Products</a>
+        <a style="margin-left: 400px; color: white" ng-click="searchView= 'user'; a1='unselected'; a2='selected'" ng-class="a2" ui-sref="admin.search">Users</a>
+    </nav>
+    <div ng-show="searchView == 'product'" class="productPanel" style="width: 1170px; margin: 0 auto">
+        <form ng-submit="searchProduct()">
+         <div class="form-group">
+            <label>Product Name</label>
+            <input type="text" class="form-control" placeholder="Enter Product Name" ng-model="productName">
+         </div>
+            <button class="btn btn-primary" style="width:100px">Search</button>
+        </form>
+
+        <div style="width: 1170px; margin: 0 auto">
+            <product ng-repeat="product in searchResult" style="float: left;margin: 30px 20px;" ng-init="productInitial(product.productName, product.productID)"></product>
+        </div>
+    </div>
+
+    <div ng-show="searchView == 'user'" class="userPanel" style="width: 1170px; margin: 0 auto">
+        <form ng-submit="searchUser()">
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" class="form-control" placeholder="Enter email">
+            </div>
+            <button class="btn btn-primary" style="width:100px">Search</button>
+        </form>
+    </div>
+</div>

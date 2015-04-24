@@ -1,0 +1,19 @@
+<div id="admin">
+    <div class="adminHeader">Futrena &nbsp Admin &nbsp Console
+        <a ui-sref="admin.search" ng-show="adminState==true" class="btn glyphicon glyphicon-search" style="font-size: 22px;border: 0;color: white; background-color: black"></a>
+    </div>
+    <nav ng-show="adminState==true" class="adminNav">
+        <a ng-click="navProduct('pending'); a1='selected'; a2='unselected'; a3='unselected'; a4='unselected' " class="elem" ng-class="a1" ui-sref="admin">Pending Products</a> |
+        <a ng-click="navProduct('testing'); a1='unselected'; a2='selected'; a3='unselected'; a4='unselected' " class="elem" ng-class="a2" ui-sref="admin">Under Testing Products</a> |
+        <a ng-click="navProduct('released'); a1='unselected'; a2='unselected'; a3='selected'; a4='unselected' " class="elem" ng-class="a3" ui-sref="admin">Released Products</a> |
+        <a ng-click="navProduct('user'); a1='unselected'; a2='unselected'; a3='unselected'; a4='selected' " class="elem" ng-class="a4" ui-sref="admin">Users Management</a>
+    </nav>
+
+    <admin ng-show="adminState==false"></admin>
+
+    <div ng-show="showProducts()" style="width: 1170px; margin: 70px auto;">
+        <product ng-repeat="product in productFactory" style="float: left;margin: 30px 20px;" ng-init="productInitial(product.productName, product.productID)"></product>
+    </div>
+
+    <div ui-view></div>
+</div>

@@ -1,0 +1,54 @@
+<div id="productDisplayPanel">
+    <div class="productDisplayPanelHeader">
+        <p style="position: absolute; left: 5%; font-size: 25px" >Product Preview</p>
+        <button ng-click="back()" class="btn btn-primary" style="position: absolute; left: 30%">Go back to Editor</button>
+        <p style="font-size: 40px; position: absolute; left: 46%; top: 0">Futrena</p>
+        <button ng-click="submit()" style="position: absolute; left: 60%; width: 140px" class="btn btn-success">Submit</button>
+    </div>
+    <div class="productMainImage"  ng-click="currentImageUrl='/images/car1.jpeg'">
+        <img src={{currentImageUrl}} height="100%" width="100%">
+    </div>
+
+    <div style="margin-top: 10px; margin-left: 5%">
+    <div class="productSmallImage" style="margin-left: 0" ng-click="currentImageUrl='/images/car2.jpeg'">
+        <img src="/images/car2.jpeg" height="100%" width="100%">
+    </div>
+    <div class="productSmallImage" ng-click="currentImageUrl='/images/car3.jpeg'">
+        <img src="/images/car3.jpeg" height="100%" width="100%">
+    </div>
+    <div class="productSmallImage" ng-click="currentImageUrl='/images/car4.jpeg'">
+        <img src="/images/car4.jpeg" height="100%" width="100%">
+    </div>
+    <div class="productSmallImage" ng-click="currentImageUrl='/images/car5.jpeg'">
+        <img src="/images/car5.jpeg" height="100%" width="100%">
+    </div>
+    </div>
+
+    <div class="productInfo">
+
+        <div class="productTitle">
+            <h2 style="font-weight: 300">{{previewProduct.productName}}</h2>
+            <p>Date: <span style="color: blue">{{previewProduct.createDate | date : "medium"}}</span></p>
+        </div>
+
+        <div class="productDescription">
+            <h3 style="font-weight: 100">Description: </h3><br>
+            <p style="word-break: normal">{{previewProduct.description}}</p>
+        </div>
+
+        <div class="productSpecification">
+            <h3 style="font-weight: 100">Specification:</h3><br>
+            <P>Height:  {{previewProduct.height}}</P>
+            <P>Length:  {{previewProduct.length}}</P>
+            <p>Width:   {{previewProduct.width}}</p>
+            <P>Material:   {{previewProduct.material}}</P>
+        </div>
+
+        <div class="productPrice">
+            <p>Price: {{previewProduct.price}}</p>
+        </div>
+    </div>
+
+    <iframe style="position: absolute; left: 64px; top: 700px;" width="610" height="400" src={{videoUrl}} frameborder="0" allowfullscreen></iframe>
+    <div style="position: relative; top: 600px; width: 50%; height: 100px;"></div>
+</div>
