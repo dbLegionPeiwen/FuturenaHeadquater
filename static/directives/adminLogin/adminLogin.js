@@ -1,10 +1,6 @@
-/**
-* @author: Hao Qiao
-*/
-
 'use strict';
 
-angular.module('directives',[])
+angular.module('directives')
 
 .directive('admin',[function(){
 
@@ -14,7 +10,6 @@ angular.module('directives',[])
 		transclude: true,
 
 		controller: function($scope,$http,$element,$rootScope){
-			console.log("adminlogin");
 			$scope.adminLogin = function(){
 
 				var admin={
