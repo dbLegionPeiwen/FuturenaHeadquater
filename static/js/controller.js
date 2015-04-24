@@ -300,44 +300,6 @@ angular.module('controller',[])
 
 })
 
-.controller('productDisplay',['$scope','$http','$stateParams','$sce',function($scope, $http, $stateParams,$sce){
-
-       console.log("productDisplayPanel");
-       $scope.currentImageUrl = "/images/car1.jpeg";
-       $scope.showProduct = null;
-
-       var url = "/product/"+$stateParams.productID;
-
-       $http.get(url).success(function(_p){
-           if (_p){
-            $scope.showProduct = _p;
-            var tempUrl = "https://www.youtube.com/embed/"+_p.videoURL;
-            $scope.videoUrl = $sce.trustAsResourceUrl(tempUrl);
-           }
-       });
-
-       $scope.addToCart= function(){
-            var url = "/shoppingCart/123@123.com/"+$stateParams.productID+"/addToCart";
-            var data = new Date();
-            var cartProduct = {
-                productCartID: null,
-                productID: null,
-                productName: $scope.showProduct.productName,
-                buyerEmail: "123@123.com",
-                createDate: data,
-                quantity: 10,
-                processState: false,
-            }
-
-            console.log(cartProduct);
-
-            $http.post(url, cartProduct).success(function(_d){
-                alert($scope.showProduct.productName+"is successfully added to cart!");
-            })
-       }
-
-}])
-
 .controller('adminConsole',['$scope','$http', '$rootScope','$state', function($scope, $http, $rootScope, $state){
 
        console.log("adminConsole");

@@ -15,25 +15,18 @@ public class ShoppingCart {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(nullable = false)
     private String productCartID;
 
-    @Column(nullable = false)
     private String productID;
 
-    @Column(nullable = false)
     private String productName;
 
-    @Column(nullable = false)
     private String buyerEmail;
 
-    @Column(nullable = false)
     private Date createDate;
 
-    @Column(nullable = false)
     private long quantity;
 
-    @Column(nullable = false)
     private Boolean processState;
 
     public String getProductCartID() {
