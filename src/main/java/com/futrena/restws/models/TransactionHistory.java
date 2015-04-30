@@ -1,9 +1,11 @@
 package com.futrena.restws.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 import java.util.Date;
 
 /**
@@ -25,8 +27,13 @@ public class TransactionHistory {
 	private String payMethod;
 	private String paypalAccount;
 	private String paypalToken;
+	
+	@Column(columnDefinition = "TEXT")
 	private String request;
+	
+	@Column(columnDefinition = "TEXT")
 	private String response;
+	
 	private String STATUS;
 	private Date updated;
 	private Date created;
