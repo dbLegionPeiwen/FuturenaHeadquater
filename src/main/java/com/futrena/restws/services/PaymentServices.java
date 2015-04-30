@@ -170,12 +170,10 @@ public class PaymentServices {
 						nIndex2=nIndex2+1;
 					}
 				}
-			}
-			
+			}			
 		}
 		
-		paras= paras + "&ALLOWNOTE=1&NOSHIPPING=1";
-		
+		paras= paras + "&ALLOWNOTE=1&NOSHIPPING=1";		
 		session.setAttribute("Payment_Amount", String.valueOf(totalPayAmt)); 
 		
 		return paras;
@@ -386,24 +384,25 @@ public class PaymentServices {
 	   * 
 	   * @param productCartID the Shopping cart ID
 	   * @param paymentKey the Token that got from Paypal/Stripe
+	   * @param owner the Seller
 	   * @param request the HttpServletRequest. Need to keep all return contents from Stripe/Paypal
 	   * @param response the HttpServletResponse. For future function extension
 	   * @return TRUE if record added succesfully, otherwise FALSE
 	   */    
-  public boolean addTransactionHistoryPostPayForStripe(String productCartID, String paymentKey, String owner,float totalAmt, HttpServletRequest request,  HttpServletResponse response ){
+  public boolean addTransactionHistoryPostPayForStripe(String productCartID, String paymentKey, String owner, HttpServletRequest request,  HttpServletResponse response ){
   	boolean ret=false;
   	List<String> mechants = getMerchantsInCart(productCartID);
   	List<ShoppingCart> shoppingCarts = shoppingCartDao.findByProductCartID(productCartID);
   	
   	try{
-  		TransactionHistory transactionHistory = new TransactionHistory();
+  			float totalAmt=getAmtByMerchantsInCart(productCartID,owner);
+  			TransactionHistory transactionHistory = new TransactionHistory();
 	    	transactionHistory.setProductCartID(productCartID);
 	    	transactionHistory.setTransactionID("?");
 	    	transactionHistory.setBuyer(shoppingCarts.get(0).getBuyerEmail());
 	    	transactionHistory.setTotalAmt(totalAmt);
 	    	transactionHistory.setSeller(owner);
 	    	transactionHistory.setPayMethod("Stripe");
-	    	transactionHistory.setPaypalAccount("");
 	    	transactionHistory.setPaymentKey(paymentKey);	    	
 	    	transactionHistory.setRequest(PaypalUtil.httpRequestDump(request));
 	    	transactionHistory.setResponse(response.toString());
@@ -442,9 +441,14 @@ public boolean addBuyerHistoryForStripe(String productCartID, String processStat
     		buyerHistory.setTransactionID(transactionID);
     		buyerHistory.setPayMethod("Stripe");
     		buyerHistory.setPaymentKey(paymentToken);
-    		buyerHistoryDao.save(buyerHistory);    
-    		ret=true;
+    		buyerHistoryDao.save(buyerHistory);       		
     	}
+    	
+    	for (ShoppingCart shoppingCart : shoppingCarts) {
+    		shoppingCartDao.delete(shoppingCart);
+    	} 
+	
+    	ret=true;
 	}catch(Exception e){
 		log.error(e.getMessage());
 	}
