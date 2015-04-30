@@ -36,20 +36,7 @@ public class PaypalUtil {
 		   return Float.toString(f);
 	    }
 	   
-	   public static String getPayPalAccount( String user)
-	    {
-		   
-		   String ret="chenshoufang@gmail.com";
-		   
-		   if (user.equalsIgnoreCase("0")) 
-		   		return "chenshoufang@gmail.com";
-		   
-		   if (user.equalsIgnoreCase("1")) 
-		   		return "shoufang.chen@gmail.com";
-		   
-		   return "york.tips@gmail.com";
-	    }
-	   
+
 	   
 	   public static float getShippingAmt(String country, List<Product> products)
 	    {

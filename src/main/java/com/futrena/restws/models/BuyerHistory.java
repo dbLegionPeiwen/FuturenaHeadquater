@@ -27,8 +27,8 @@ public class BuyerHistory {
     private String transactionID;
     private String payMethod;
     private String paypalAccount;
-    private String paypalToken;
-
+    //private String paypalToken;
+    private String paymentKey;
     
     public long getId() {
 		return id;
@@ -96,10 +96,10 @@ public class BuyerHistory {
 	public void setPaypalAccount(String paypalAccount) {
 		this.paypalAccount = paypalAccount;
 	}
-	public String getPaypalToken() {
-		return paypalToken;
+	public String getPaymentKey() {
+		return paymentKey;
 	}
-	public void setPaypalToken(String paypalToken) {
-		this.paypalToken = paypalToken;
+	public void setPaymentKey(String paymentKey) {
+		this.paymentKey = paymentKey;
 	}
 }
