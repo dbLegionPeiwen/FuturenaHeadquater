@@ -1,19 +1,26 @@
 <!--Author: Hao Qiao-->
 
-<div id="product">
-    <a ng-show="home()" ui-sref="product({productID: productID})">
+<div id="product" style="text-align: center">
+    <a ng-show="home()" ng-click="auth()">
         <div class="image">
-            <img style="width: 100%; height: 100%" src="/images/banner1.jpg">
+            <img style="width: 100%; height: 100%" src={{imageUrl}}>
+        </div>
+    </a>
+    
+        <a ng-show="user()" ui-sref="product({productID: productID})">
+        <div class="image">
+            <img style="width: 100%; height: 100%" src={{imageUrl}}>
         </div>
     </a>
 
     <a ng-show="admin()" ui-sref="productAdmin({id: productID})">
         <div class="image">
-            <img style="width: 100%; height: 100%" src="/images/banner1.jpg">
+            <img style="width: 100%; height: 100%" src={{imageUrl}}>
         </div>
-    </a>
-    <a style="color: white; font-size: 20px" ng-show="home()" ui-sref="product({productID: productID})">{{productName}}</a>
-    <a style="color: white; font-size: 20px" ng-show="admin()" ui-sref="productAdmin({id: productID})">{{productName}}</a>
+    </a> 
 
 </div>
 
+<a style="color: black; font-size: 20px;font-weight: normal;" ng-show="home()" ng-click="auth()">{{productName}}</a>
+<a style="color: black; font-size: 20px;font-weight: normal;" ng-show="user()">{{productName}}</a>
+<a style="color: black; font-size: 20px;font-weight: normal;" ng-show="admin()" ui-sref="productAdmin({id: productID})">{{productName}}</a>

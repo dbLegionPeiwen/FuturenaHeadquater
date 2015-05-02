@@ -1,0 +1,32 @@
+#targetInfo{
+	margin-top:20px;
+	text-align:center;
+}
+
+#targetPhoto{
+	height:200px;
+	width:200px;
+	border-radius:150px;
+}
+
+.otherUserListItemBox{
+	width:400px;
+	height:400px;
+	float:left;
+	margin-left:50px;
+	margin-top:40px;
+}
+
+#wishListContent{
+	height:600px;
+	overflow:scroll;
+}
+
+#distributionContent{
+	height:600px;
+	overflow:scroll;	
+}
+#soldContent{
+	height:600px;
+	overflow:scroll;
+}

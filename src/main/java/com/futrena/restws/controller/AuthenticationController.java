@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -49,7 +50,7 @@ public class AuthenticationController
     @RequestMapping("/authenticate")
     @Secured("API")
     public ResponseEntity<Object> authenticate(@Valid @RequestBody AuthenticationRequest authenticationRequest,
-            BindingResult bindingResult, HttpSession session){
+            BindingResult bindingResult){
 
         if (bindingResult.hasErrors())
         {
@@ -134,9 +135,23 @@ public class AuthenticationController
         String encodedAccessToken = Base64.encodeBase64String((authentication.getEmail() + ":" + authentication.getAccessToken()).getBytes());
         authenticationResponse.setAccessToken(encodedAccessToken);
 
-        session.setAttribute("email",authenticationRequest.getEmail());
-
         return new ResponseEntity<Object>(authenticationResponse, HttpStatus.OK);
+    }
+    
+    @RequestMapping("/user/{email}/logout")
+    @Secured("API")
+    public ResponseEntity<Object> Logout (@PathVariable String email) {
+    	
+    	try {
+    		Authentication auth=authenticationDao.findByEmail(email);
+    		authenticationDao.delete(auth);
+    		return new ResponseEntity<Object>("success",HttpStatus.OK);
+    	}
+    	
+    	catch(Exception ex) {
+    		return new ResponseEntity<Object>(ex, HttpStatus.OK);
+    	}
+    	
     }
     
 }

@@ -1,0 +1,68 @@
+<div id="shoppingCartPage">
+    <nav class="homeNav" style="width: 100%; background-color: black; border: solid 1px black">
+        <a class="webName1" ui-sref="home" style="font-size: 35px; color: orange">
+            <div style="margin-left: 30px">FUTRENA</div>
+        </a>
+    </nav>
+    <div id="shoppingCartBox">
+    	<table class="table table-striped" id="productCartTable">
+    		<thead id="productTableHead">
+    			<th>
+    				Product Image
+    			</th>
+    			<th>
+    				Product Name
+    			</th>
+    			<th>
+    				Quantity
+    			</th>
+    			<th>
+    				Amount
+    			</th>    			    			    			
+    		</thead>
+    		<tbody>
+    			<tr class="productTableRow">
+    				<td class="productTableItem">
+    					<img class="productImage" style="height:100px" src="images/car1.jpeg">
+    				</td>
+    				<td class="productTableItem">
+    					<div>{{productName}}</div>
+    				</td>
+    				<td class="productTableItem">
+    					<div><i class="fa fa-minus" ng-click="decreaseNumber()" style="cursor:pointer"></i>&nbsp&nbsp&nbsp{{productNumber}}&nbsp&nbsp&nbsp<i class="fa fa-plus" ng-click="increaseNumber()" style="cursor:pointer"></i></div>
+    				</td>
+    				<td class="productTableItem">
+    					<div>{{productNumber * price | currency}}</div>
+    				</td>
+    				<td>
+    					<i class="fa fa-times" style="color:red;margin-top:25px;cursor:pointer" id="deleteX"></i>
+    					<button style="display:none" data-target="#warnningModal" data-toggle="modal" id="hiddenDelete">modal</button>
+    				</td>
+    			</tr>
+    		</tbody>
+    	</table>
+    </div>
+    <div style="float:right; font-weight:normal; margin-right:35px;margin-bottom:30px">Total Price: {{productNumber * price | currency}}</div>
+    <div style="clear:both"></div>
+    <div>
+    	<a class="btn btn-success" style="float:right;margin-right:30px;width:100px" ui-sref="checkout">Checkout</a>
+    	<a class="btn btn-default" style="float:right;margin-right:30px;width:100px">Cancel</a>
+    </div>
+    <div class="modal fade bs-example-modal-sm" id="warnningModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    	<div class="modal-dialog modal-sm">
+    		<div class="modal-content">
+    			<div class="modal-header">
+        			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
+        			<h4>Confirmation</h4>
+    			</div>
+    			<div class="modal-body">
+    				Are you sure you want to remove this item?
+    			</div>
+    			<div class="modal-footer">
+    				<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        			<button type="button" class="btn btn-success">Confirm</button>
+    			</div>
+    		</div>
+    	</div>
+    </div>
+</div>

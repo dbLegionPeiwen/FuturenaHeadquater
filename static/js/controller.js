@@ -6,15 +6,14 @@
 
 angular.module('controller',[])
 
-.run(function($rootScope){
-    $rootScope.tempProduct;
-    $rootScope.adminAccess = false;
-})
-
-.controller('home',['$scope','$http',function($scope,$http){
+.controller('home',function($scope, $http, $rootScope, $state){
     var scope = $scope;
     console.log("home page");
     $scope.loginSuccess = false;
+    if ($rootScope.currentUser != null){   	
+    	$scope.loginSuccess = true;
+    	console.log($rootScope.currentUser);
+    }
     $scope.showState = "released";
     $scope.filterShow = false;
     $scope.view = "highTech";
@@ -47,19 +46,8 @@ angular.module('controller',[])
              }
     })
 
-    /*$scope.changeTextHighTech = function(){
-        document.getElementById("display").innerHTML = "High Tech";
-    };
-
-    $scope.changeTextFashion = function(){
-        document.getElementById("display").innerHTML = "Living and Office";
-    };
-
-    $scope.changeTextArtisan = function(){
-        document.getElementById("display").innerHTML = "Artisan";
-    };*/
-
     $("#slideHide").click(function(){
+    	
         $(".overlay").fadeOut(function(){
             $("#home .productBoard").css("margin-top",80);
             $("#titleSection").slideUp();
@@ -125,19 +113,6 @@ angular.module('controller',[])
             $currentImage.fadeIn(2000);
             $overlayContent.fadeIn(2000);
         });
-
-        /*setInterval(function(){
-        $currentImage.fadeOut(1000);
-        if($currentImage.next().is('img') === false){
-            $currentImage = $('.imageMain :first-child');
-            $currentImage.fadeIn(3000);
-        }
-        else{
-            $currentImage.next().fadeIn(3000);
-            $currentImage = $currentImage.next();
-        }
-        }, 
-        3000);*/
     });
 
     $scope.showLoginPanel = function(){
@@ -154,20 +129,37 @@ angular.module('controller',[])
              $scope.productsFactory = _d;
          });
     }
-}])
+    
+    $scope.goSubmission = function(){
+    	
+    	if ($rootScope.currentUser != null)
+    		$state.go('submission');
+    	else {
+	         $(".userSignInUp").css("top",$(window).scrollTop()+150);
+	         $("#blackOverlay").css("top",$(window).scrollTop());
+	         $("#mainContainer").addClass("disableScroll");
+	         $("#loginPanel").show();
+	         $("#blackOverlay").show();	
+    	}
+    }
+})
 
 
 .controller('productPreview',['$scope','$http', '$stateParams','$sce', '$state', '$rootScope',function($scope, $http, $stateParams, $sce, $state, $rootScope){
 
        console.log("productPreviewPanel");
-       $scope.currentImageUrl = "/images/car1.jpeg";
-       var url = "/product/"+$stateParams.id;
-
-       $http.get(url).success(function(_p){
+       
+       $http.get("/product/"+$stateParams.id).success(function(_p){
            if (_p){
              $scope.previewProduct = _p;
              var tempUrl = "https://www.youtube.com/embed/"+_p.videoURL;
              $scope.videoUrl = $sce.trustAsResourceUrl(tempUrl);
+             
+             $scope.currentImageUrl = '/UploadImages/'+$scope.previewProduct.productID+'0.jpeg';
+	         $scope.imgurl1 = '/UploadImages/'+$scope.previewProduct.productID+'1.jpeg';
+	         $scope.imgurl2 = '/UploadImages/'+$scope.previewProduct.productID+'2.jpeg';
+	         $scope.imgurl3 = '/UploadImages/'+$scope.previewProduct.productID+'3.jpeg';
+	         $scope.imgurl4 = '/UploadImages/'+$scope.previewProduct.productID+'4.jpeg';
            }
        });
 
@@ -184,121 +176,7 @@ angular.module('controller',[])
 }])
 
 
-.controller('submission',function($scope, $http, $state, $rootScope){
-    $scope.unit = "Unit";
-    $scope.productName = "";
-    $scope.details = "";
-    $scope.typeP = "regular";
-    $scope.videoUrl;
-    $scope.price ="";
-    $scope.material;
-    $scope.image;
-    $scope.heightP;
-    $scope.widthP;
-    $scope.lengthP;
-    $scope.imageBuffer;
-    $scope.demonBuffer;
-//    $scope.productNameFilled = false;
-//    $scope.detailFilled =false;
-//    $scope.priceFilled = false;
-//    $scope.imagesFilled = true;
 
-    if ($rootScope.previewProductID != null){
-        var url = "product/"+$rootScope.previewProductID
-       $http.get(url).success(function(_p){
-           $scope.productName = _p.productName;
-           $scope.details = _p.description;
-           $scope.videoUrl = _p.videoURL;
-           $scope.price = _p.price;
-           $scope.material = _p.material;
-           $scope.heightP = _p.height;
-           $scope.widthP = _p.width;
-           $scope.lengthP = _p.length;
-       })
-    }
-
-
-
-    $scope.demon = function() {
-        var demonUp = document.getElementById("demonUpload");
-        if(demonUp.files.length > 3){
-            $('#demonUpload').val('');
-            alert("Max 3 photos!");
-        }
-    };
-
-    $scope.upLoading = function() {
-        var filesUp = document.getElementById("fileToUpload");
-        var text ="";
-        var count=1;
-        //alert(filesUp.files.length);
-            /*else if(filesUp.files.length > 0 && filesUp.files.length<=5){
-                for(var i = 0; i<filesUp.files.length; i++) {
-                    $scope.imageBuffer.push(filesUp.files[i]);
-                }
-            }*/
-        if(filesUp.files.length <= 5 && filesUp.files.length > 0) {
-            $scope.imagesFilled = true;
-        }
-        else if(filesUp.files.length > 5){
-            $('#fileToUpload').val('');
-            alert("Max 5 photos!");
-            $scope.imagesFilled = false;
-        }
-        else if(filesUp.files.length === 0) {
-            $scope.imagesFilled = false;
-        }
-        for(var i = 0; i < filesUp.files.length; i++){
-            var imageReader = new FileReader();
-            imageReader.onload = function(e) {
-                $("#display"+count).attr("src",e.target.result);
-                count++;
-            }
-            imageReader.readAsDataURL(filesUp.files[i]);
-        }
-    }
-
-    $scope.submitProduct = function(){
-
-        $scope.date = new Date()
-        var product = {
-                productName: $scope.productName,
-                description: $scope.details,
-                productType: "Fashion",
-                price: $scope.price,
-                videoURL: $scope.videoUrl,
-                length: $scope.lengthP,
-                height: $scope.heightP,
-                width:  $scope.widthP,
-                productMaterial: $scope.material,
-                createDate: $scope.date,
-        }
-
-
-        if (!$rootScope.previewProductID){
-
-            $http.post("/product/add",product).success(function(_d){
-                console.log(_d);
-                $state.go('productPreview',{id: _d.productID});
-             })
-        } else {
-            var url = "product/update/"+$rootScope.previewProductID
-            $http.post(url,product).success(function(_d){
-                console.log(_d);
-                $state.go('productPreview',{id: _d.productID});
-            })
-        }
-
-
-    }
-
-})
-
-.controller('user',function($scope,$http){
-
-
-
-})
 
 .controller('adminConsole',['$scope','$http', '$rootScope','$state', function($scope, $http, $rootScope, $state){
 
@@ -432,3 +310,86 @@ angular.module('controller',[])
        }
 
 }])
+
+.controller("shoppingCart",function($scope,$http){
+  $scope.productName = "Ferrari";
+  $scope.productNumber = 1;
+  $scope.price = 300000;
+  $scope.decreaseNumber = function() {
+    $scope.productNumber -= 1;
+    if($scope.productNumber===0){
+      document.getElementById("hiddenDelete").click();
+    }
+  }
+  $scope.increaseNumber = function() {
+      $scope.productNumber += 1;
+  }
+
+  $("#deleteX").click(function(){
+    $("#hiddenDelete").click();
+  })
+})
+
+.controller("checkout",function($scope,$http){
+  $scope.productName = "Ferrari";
+  $scope.productNumber = 1;
+  $scope.price = 300000;
+  $scope.shippingFee = 10;
+})
+
+.controller("otherUserPage",function($scope,$http){
+
+    $scope.targetName = "Eminem";
+
+
+    $(".userPageTabs").click(function(){
+        if($(this).attr("id") === "wishListTab") {
+            $("#wishListContent").show();
+            $("#distributionContent").hide();
+            $("#soldContent").hide();
+        }
+        else if($(this).attr("id") === "distributionTab") {
+            $("#wishListContent").hide();
+            $("#distributionContent").show();
+            $("#soldContent").hide();        
+        }
+        else if($(this).attr("id") === "soldTab") {
+            $("#wishListContent").hide();
+            $("#distributionContent").hide();
+            $("#soldContent").show();          
+        }
+        console.log($(this).attr("id"));     
+    })
+})
+
+.controller('submissionWanted',function($scope,$http){
+    var wantedBuffer = null;
+
+    $("#addWantedImage").click(function(){
+        $("#uploadWanted").click();
+    })
+
+    $("#uploadWanted").change(function(){
+        uploadingWanted();
+    })
+
+    $("#wantedimage").click(function(){
+        wantedBuffer = null;
+        $("#addWantedImage").css("display","inline");
+        $("#wantedimage").css("display","none");
+        $("#uploadWanted").val('');   
+    })
+
+    var uploadingWanted = function(){
+        var filesUp = document.getElementById("uploadWanted");
+        var imageReader = new FileReader();
+        imageReader.onload = function(e){
+            wantedBuffer = e.target.result;
+            $("#wantedimage").attr("src",e.target.result);
+            $("#wantedimage").css("display","inline");
+            $("#addWantedImage").css("display","none");
+        }
+            imageReader.readAsDataURL(filesUp.files[0]);
+    }
+
+})

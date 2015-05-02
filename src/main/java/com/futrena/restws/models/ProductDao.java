@@ -18,6 +18,7 @@ public interface ProductDao extends CrudRepository<Product, Long> {
     List<Product> findAllByProductType(String productType);
     List<Product> findAllByCreateDate(Date createDate);
     List<Product> findAllByProductState(String productState);
+    List<Product> findAllByDesigner(String designer);
 
 }
 

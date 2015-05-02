@@ -1,0 +1,70 @@
+<div id="checkout">
+	<nav class="homeNav" style="width: 100%; background-color: black; border: solid 1px black">
+        <a class="webName1" ui-sref="home" style="font-size: 35px; color: orange">
+            <div style="margin-left: 30px">FUTRENA</div>
+        </a>
+    </nav>
+    <div id="shippingInform">
+    	<div class="shippingItem">
+    		Shipping Name:&nbsp&nbsp&nbsp
+    		<input class="form-control" style="width:300px;display:inline-block" type="text">
+    	</div>
+    	<div class="shippingItem">
+    		Shipping Address: &nbsp&nbsp&nbsp
+    		<input class="form-control" style="width:400px;display:inline-block" type="text" placeholder="Street Address">
+    		<input class="form-control" style="width:200px;display:inline-block;margin-left:123px;margin-top:20px" type="text" placeholder="Province/State">
+    		<input class="form-control" style="width:150px;display:inline-block;margin-left:20px;margin-top:20px" type="text" placeholder="Country">
+    	</div>
+    	<div class="shippingItem">
+    		Billing Address: &nbsp&nbsp&nbsp
+    		<input class="form-control" style="width:400px;display:inline-block" type="text" placeholder="Street Address">
+    		<input class="form-control" style="width:200px;display:inline-block;margin-left:123px;margin-top:20px" type="text" placeholder="Province/State">
+    		<input class="form-control" style="width:150px;display:inline-block;margin-left:20px;margin-top:20px" type="text" placeholder="Country">
+    	</div>
+    	<div class="shippingItem">
+    		Phone Number: &nbsp&nbsp&nbsp<input class="form-control" style="width:400px;display:inline-block" type="text" placeholder="Contact Number">
+    	</div>
+    </div>
+    <div id="checkoutInvoice">
+    	<div id="invoiceBox">
+    		<table class="table table-striped">
+    			<thead>
+    				<tr>
+    					<th>
+    						Product Name
+    					</th>
+    					<th>
+    						Quantity
+    					</th>
+    					<th>
+    						Total Price
+    					</th>
+    					<th>
+    						Shipping Fee
+    					</th>
+    				</tr>
+    			</thead>
+    			<tbody>
+    				<tr>
+    					<td>
+    						{{productName}}
+    					</td>
+    					<td>
+    						{{productNumber}}
+    					</td>
+    					<td>
+    						{{productNumber * price | currency}}
+    					</td>
+    					<td>
+    						{{productNumber * shippingFee | currency}}
+    					</td>
+    				</tr>
+    			</tbody>
+    		</table>
+    	</div>
+    	<div style="float:right;margin-right:30px">Total Amount:{{(price + shippingFee) * productNumber | currency}}</div>
+    	<div style="clear:both"></div>
+    	<button class="btn btn-success" style="float:right;margin-right:30px;margin-top:20px">Confirm</button>
+    	<button class="btn btn-default" style="float:right;margin-right:30px;margin-top:20px">Not Yet</button>
+    </div>
+</div>

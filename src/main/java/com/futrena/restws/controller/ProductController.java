@@ -20,6 +20,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * Created by haoqiao on 15-04-14.
  */
@@ -65,7 +67,21 @@ public class ProductController {
         List<Product> p = productDao.findAllByProductState(state);
         return p;
     }
-
+    
+    @RequestMapping("/product/getByDesigner/{email}")
+    @Secured("API")
+    public List<Product> GetByDesigner(@PathVariable String email){
+    	
+    	try{
+    		List<Product> p = productDao.findAllByDesigner(email+".com");
+    		return p;
+    	}
+    	catch(Exception ex) {
+    		ex.printStackTrace();
+    		return null;
+    	}
+    	  	
+    }
 
     @RequestMapping("/product/deleteById")
     @Secured("API")
@@ -101,6 +117,7 @@ public class ProductController {
                 p.setVideoURL(product.getVideoURL());
                 p.setPrice(product.getPrice());
                 p.setState("pending");
+                p.setDesigner(product.getDesigner());
                 productDao.save(p);
 
                 ProductRate _rate = new ProductRate();

@@ -1,0 +1,25 @@
+#shippingInform{
+	width:50%;
+	float:left;
+	border-right:1px solid; 
+	height:80vh;
+	margin-top:20px;
+}
+
+.shippingItem{
+	margin-top:30px;
+	margin-left:30px;
+	width:80%
+}
+
+#checkoutInvoice{
+	width:50%;
+	float:left;
+	border-right:1px solid; 
+	margin-top:20px;
+}
+
+#invoiceBox{
+	height:75vh;
+	overflow:scroll;
+}

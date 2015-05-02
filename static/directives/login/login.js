@@ -9,10 +9,15 @@ angular.module('directives')
 		templateUrl: "./directives/login/login.html",
 		transclude: true,
 
-		controller: function($scope, $http, $element){
+		controller: function($scope, $http, $element, $cookieStore, $rootScope){
 			$scope.State = "login";
 			$scope.errorMessage = null;
 			$scope.loginTime = 10;
+			
+			$scope.close = function(){		
+			       $("#loginPanel").hide();
+			       $("#blackOverlay").hide();
+			}
 
 			$scope.auth = function() {
 
@@ -23,7 +28,7 @@ angular.module('directives')
 					client_id: 'DBLI',
 					client_secret: '2649c5732a1b'
 				}
-
+				
 				if ($scope.loginTime>0) {
 				$http.post('/authenticate',user).success(function(message){
 
@@ -36,15 +41,18 @@ angular.module('directives')
 						}
 					}
 					else {
-
 						$("#mainContainer").removeClass("disableScroll");
                         $("#loginPanel").hide();
                         $("#blackOverlay").hide();
                         $scope.loginSuccess = true;
+                        $cookieStore.put("user",message.email);
+                        $cookieStore.put("accessToken", message.access_token);
+                        $cookieStore.put("userId", message.user_id);
+                        $rootScope.currentUser = message.email;
+                        $http.defaults.headers.common['Authentication-Header'] = message.access_token;                        
 					}
 
 				})}
-
 
                 }
 		}

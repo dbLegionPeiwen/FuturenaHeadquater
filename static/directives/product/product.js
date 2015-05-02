@@ -9,11 +9,12 @@ angular.module('directives')
         			templateUrl: "./directives/product/product.html",
         			transclude: true,
 
-        			controller: function($scope, $http, $element, $rootScope, $state){
+        			controller: function($scope, $http, $element, $rootScope, $state, $cookieStore){
 
 						$scope.productInitial = function(name,id){
 							$scope.productName = name;
 							$scope.productID = id;
+							$scope.imageUrl = "/UploadImages/"+id+"0.jpeg"
 						};
 
 						$scope.home = function(){
@@ -23,6 +24,26 @@ angular.module('directives')
 						$scope.admin = function(){
 							return $state.includes('admin');
 						};
+						
+						$scope.user = function(){
+							return $state.includes('user');
+						};
+											
+						$scope.auth = function(){
+							
+							if ($rootScope.currentUser == null) {
+						         $(".userSignInUp").css("top",$(window).scrollTop()+150);
+						         $("#blackOverlay").css("top",$(window).scrollTop());
+						         $("#mainContainer").addClass("disableScroll");
+						         $("#loginPanel").show();
+						         $("#blackOverlay").show();								
+							}
+							
+							else {
+								$state.go('product',{productID: $scope.productID});
+							}
+						}
+						
         			}
 
         		    }

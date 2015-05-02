@@ -25,14 +25,13 @@ public class Product {
     private String Material;
     private String productState;
     private Date createDate;
-    private String Owner;
-    private String Designer;
-    private String Regular;
+    private String owner;
+    private String designer;
+    private String regular;
     private long availableAmount;
     private float deliveryFeeUS;
     private float deliveryFeeCA;
     private float deliveryFeeCH;
-
 
     public String getProductID() {
         return productID;
@@ -131,27 +130,27 @@ public class Product {
     }
 
     public String getOwner() {
-        return Owner;
+        return owner;
     }
 
     public void setOwner(String owner) {
-        Owner = owner;
+        this.owner = owner;
     }
 
     public String getDesigner() {
-        return Designer;
+        return designer;
     }
 
     public void setDesigner(String designer) {
-        Designer = designer;
+        this.designer = designer;
     }
 
     public String getRegular() {
-        return Regular;
+        return regular;
     }
 
     public void setRegular(String regular) {
-        Regular = regular;
+        this.regular = regular;
     }
 
     public long getAvailableAmount() {
@@ -193,4 +192,5 @@ public class Product {
     public void setDeliveryFeeCH(float deliveryFeeCH) {
         this.deliveryFeeCH = deliveryFeeCH;
     }
+ 
 }

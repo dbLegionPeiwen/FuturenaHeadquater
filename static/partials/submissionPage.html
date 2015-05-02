@@ -34,11 +34,8 @@
                 <label class="col-md-2 control-label"><span style="color:red">*</span>I submit as</label>
 
                 <div class="col-md-10">
-                    <label class="radio-inline" for="rule-0">
-                        <input type="radio" name="rule" id="rule-0" value="regular" checked="checked" ng-model="typeP">
-                        Wanted </label>
                     <label class="radio-inline" for="rule-1">
-                        <input type="radio" name="rule" id="rule-1" value="designer" ng-model="typeP">
+                        <input type="radio" name="rule" id="rule-1" value="designer" ng-model="typeP" checked="checked">
                         Designer </label>
                     <label class="radio-inline" for="rule-2">
                         <input type="radio" name="rule" id="rule-2" value="productOwner" ng-model="typeP">
@@ -104,29 +101,37 @@
                 </div>
             </div>
             <br><br>
-            <button type="submit" class="btn btn-success row row-margin2"
-                    style="width:300px; margin-left: 10px" id="submitButton">Submit
-            </button>
+            <div style="margin-bottom:30px">
+                <button type="submit" class="btn btn-success row row-margin2"
+                    style="width:200px; margin-left: 10px" id="submitButton">Submit
+                </button>
 
-            <a class="btn btn-danger"
-                    style="width:300px; margin-left: 80px" ui-sref="home">Cancel
-            </a>
+                <button class="btn btn-danger"
+                    style="width:200px; margin-left: 80px" ui-sref="home">Cancel
+                </button>
+            </div>
         </form>
     </div>
 
-    <form style="width:45%;float:right">
+    <div style="display:none">
+        <input id="uploadButton" type="file" multiple>
+    </div>
+
+    <form style="width:45%;float:right" ng-show="previewProductID == null">
         <legend>
-            Product Images
+            Product Images(Up to 5 images)
         </legend>
-        <div><img id="display1" style="height:200px; width: 300px; margin-top: 10px; float:left; margin-right:10px">
+        <div><img class="display displayImage" id="display0" style="height:200px; width: 300px; margin-top: 10px; float:left; margin-right:10px;display:none">
         </div>
-        <div><img id="display2" style="height:200px; width: 300px; margin-top: 10px; float:left; margin-right:10px">
+        <div><img class="display displayImage" id="display1" style="height:200px; width: 300px; margin-top: 10px; float:left; margin-right:10px; display:none">
         </div>
-        <div><img id="display3" style="height:200px; width: 300px; margin-top: 10px; float:left; margin-right:10px">
+        <div><img class="display displayImage" id="display2" style="height:200px; width: 300px; margin-top: 10px; float:left; margin-right:10px; display:none">
         </div>
-        <div><img id="display4" style="height:200px; width: 300px; margin-top: 10px; float:left; margin-right:10px">
+        <div><img class="display displayImage" id="display3" style="height:200px; width: 300px; margin-top: 10px; float:left; margin-right:10px; display:none">
         </div>
-        <div><img id="display5" style="height:200px; width: 300px; margin-top: 10px; float:left; margin-right:10px">
+        <div><img class="display displayImage" id="display4" style="height:200px; width: 300px; margin-top: 10px; float:left; margin-right:10px; display:none">
+        </div>
+        <div><img class="display displayImage" id="addImage" style="height:200px; width: 300px; margin-top: 10px; float:left; margin-right:10px;" src="images/1.jpg">
         </div>
     </form>
 </div>

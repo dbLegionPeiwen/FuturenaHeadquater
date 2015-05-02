@@ -1,16 +1,291 @@
 <div id="userPage">
-	<nav class="homeNav">
-        <a class="webName1" href="#/home"><div>FUTRENA</div></a>
-    </nav>
-    <div class="sidebar">
-    	<a id="myAccount" class="sideItem">
-    		<div>
-    			My Account
-    		</div>
-    	<a class="sideItem sideItemAlt">
-    		<div>
-    			My Income
-    		</div>
-    	</a>
-    </div>
-</div>
+	<div>
+		<nav class="homeNav">
+			<a class="webName1" href="#/home">
+				<div>FUTRENA</div>
+			</a> <a
+				style="color: rgb(255, 153, 0); text-decoration: none; float: right; font-size: 35px; margin-right: 30px">
+				<div><i class="fa fa-user"></i> {{currentUser}}</div>
+			</a>
+		</nav>
+		<div>
+			<div class="sidebarUser">
+				<div id="myAccount" class="title" style="margin-top: 10px;">
+					My Account
+				</div>
+				<br>
+
+				<div>
+					<a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_68rI7JYXa0r0svqaqp7oQHTMI0qPruXS&scope=read_write"
+						class="stripe-connect" style="margin-left: 20px"><span>Connect with Stripe</span></a>
+				</div>
+				
+				<hr>
+				
+				<div class="sideItem">Income</div>
+
+				<div class="sideItem sideItemAlt" style="margin-top: 10px"
+					ng-click="pageChangeSubmission()" id="submissionTag">
+					Submission</div>
+				<div class="sideItem sideItemAlt"
+					ng-click="pageChangeDistribution()" id="distributionTag">
+					Distribution</div>
+				<hr>
+				<div class="sideItem">Transaction</div>
+				<div class="sideItem sideItemAlt" style="margin-top: 10px"
+					id="buyingHistoryTag" ng-click="pageChangeBuyingHistory()">
+					Buying History</div>
+				<div class="sideItem sideItemAlt" id="sellingHistoryTag"
+					ng-click="pageChangeSellingHistory()">Selling History</div>
+				<hr>
+				<div class="sideItem" style="margin-top: 5px; margin-bottom: -5px"
+					id="favouriteTag" ng-click="pageChangeFavourite()">My
+					favourites</div>
+				<hr>
+				<div class="sideItem">Information</div>
+				<div class="sideItem sideItemAlt" style="margin-top: 10px"
+					id="profileTag" ng-click="pageChangeProfile()">Profile
+					Setting</div>
+				<div class="sideItem sideItemAlt" id="securityTag"
+					ng-click="pageChangeSecurity()">Security Setting</div>
+			</div>
+			
+			<div class="pageContent">
+			
+				<div class="contentContainer profile" ng-show="profileShow">
+					<h2 style="margin-left: 20px">Profile Setting</h2>
+					<hr style="margin-right: 20px">
+					<div style="float: left">
+						<div id="nameWrapper">
+							<div class="profileChange">User Name</div>
+							<div class="profileChange" style="width: 300px">
+								<input type="text" class="form-control" id="nameBox"
+									ng-model="userName" />
+							</div>
+						</div>
+						<div id="genderWrapper">
+							<div class="profileChange">Gender</div>
+							<form class="profileChange">
+								<input type="radio" name="sex" ng-value="'male'"
+									ng-model="userGender" style="margin-left: 30px" /> Male <input
+									type="radio" name="sex" ng-value="'female'"
+									ng-model="userGender" style="margin-left: 30px" /> Female <input
+									type="radio" name="sex" ng-value="'confidential'"
+									ng-model="userGender" style="margin-left: 30px" /> Confidential
+							</form>
+						</div>
+
+						<div id="shippingNameWrapper">
+							<div class="profileChange">Name</div>
+							<div class="profileChange"
+								style="width: 100px; margin-left: 28px">
+								<input type="text" class="form-control" id="nameBox"
+									ng-model="firstName" placeholder="First Name" />
+							</div>
+							<div class="profileChange" style="width: 100px">
+								<input type="text" class="form-control" id="nameBox"
+									ng-model="lastName" placeholder="Last Name" />
+							</div>
+						</div>
+					</div>
+					<div style="float: left; margin-left: 150px">
+						<img style="width: 200px; height: 200px" id="uploadPlus"
+							src="images/1.jpg">
+					</div>
+					<div style="float: left; margin-left: 150px">
+						<img style="width: 200px; height: 200px; display: none"
+							id="photoPresent">
+					</div>
+					<input id="uploadPhoto" type="file" style="display: none">
+					<div style="clear: both"></div>
+					<div class="emailWrapper">
+						<div class="profileChange">Email</div>
+						<div class="profileChange" style="width: 500px; margin-left: 34px; width: 300px;">
+							<input type="email" class="form-control" id="emailBox"
+								ng-model="emailAdd" />
+						</div>
+					</div>
+					<div class="mobileWrapper">
+						<div class="profileChange">Mobile</div>
+						<div class="profileChange" style="width: 500px; margin-left: 28px">
+							<input type="text" class="form-control" id="phoneBox"
+								ng-model="phoneNumber" placeholder="Default Contact Number" style="width: 300px;"/>
+						</div>
+					</div>
+					<div class="addressWrapper">
+						<div class="profileChange">Address</div>
+						<div class="profileChange" style="width: 400px; margin-left: 18px">
+							<input type="text" class="form-control" id="addBox"
+								ng-model="shippingAdress" placeholder="Default Shipping Address" />
+						</div>
+						<div class="profileChange" style="width: 90px">
+							<input type="text" class="form-control" id="postal"
+								ng-model="postalCode" placeholder="Postal" />
+						</div>
+						<br>
+						<div class="profileChange" style="width: 120px; margin-left: 90px">
+							<input type="text" class="form-control" id="countryBox"
+								ng-model="shippingCity" placeholder="City" />
+						</div>
+						<div class="profileChange" style="width: 120px">
+							<input type="text" class="form-control" id="countryBox"
+								ng-model="shippingState" placeholder="State/Province" />
+						</div>
+						<div class="profileChange" style="width: 120px">
+							<input type="text" class="form-control" id="countryBox"
+								ng-model="shippingCountry" placeholder="Country" />
+						</div>
+					</div>
+					<div class="buttonWrapper"
+						style="margin-left: 50%; margin-top: 30px">
+						<button class="btn btn-default" style="width: 100px">Submit</button>
+						<button class="btn btn-default"
+							style="width: 100px; margin-left: 180px">Reset</button>
+					</div>
+				</div>
+				<div class="contentContainer sercurity" ng-show="securityShow">
+					<h2 style="margin-left: 20px">Security Setting</h2>
+					<hr style="margin-right: 20px">
+					<div class="password" style="margin-top: 60px">
+						<div class="profileChange">Old Password</div>
+						<div class="profileChange" style="width: 300px; margin-left: 24px">
+							<input type="password" class="form-control" id="password"
+								ng-model="passwordTest" />
+						</div>
+					</div>
+					<div class="password">
+						<div class="profileChange">New Password</div>
+						<div class="profileChange" style="width: 300px; margin-left: 18px">
+							<input type="password" class="form-control" id="password"
+								ng-model="newPassword" />
+						</div>
+					</div>
+					<div class="password">
+						<div class="profileChange">Confirm Password</div>
+						<div class="profileChange" style="width: 300px">
+							<input type="password" class="form-control" id="password"
+								ng-model="confirmPassword" />
+						</div>
+					</div>
+					<div class="buttonWrapper"
+						style="margin-left: 20%; margin-top: 20px">
+						<button class="btn btn-default" style="width: 100px">Submit</button>
+						<button class="btn btn-default"
+							style="width: 100px; margin-left: 180px">Reset</button>
+					</div>
+				</div>
+				<div class="contentContainer submissionIncome"
+					ng-show="submissionShow">
+					<h2 style="margin-left: 20px; display: inline">Submission</h2>
+					<p style="display: inline; float: right; margin-top: 20px"></p>
+					<hr style="margin-right: 20px">
+					<div id="submissionTable"
+						style="margin-left: 80px; overflow: scroll; height: 65vh">
+						
+						<div class="submissionBox" ng-repeat="product in productFactory">
+							<userproduct ng-init="productInitial(product.productName, product.productID)"></userproduct>
+						</div>
+						
+					</div>
+				</div>
+				<div class="contentContainer distributionIncome"
+					ng-show="distributionShow">
+					<h2 style="margin-left: 20px; display: inline">Distribution</h2>
+					<p style="display: inline; float: right; margin-top: 20px"></p>
+					<hr style="margin-right: 20px; margin-left: 20px">
+					<div id="submissionTable"
+						style="margin-left: 80px; overflow: scroll; height: 500px">
+						<div class="submissionBox">
+							<div>
+								<img src="images/sample.png" style="width: 100%; height: 100%">
+							</div>
+							<div style="text-align: center;">Sample</div>
+						</div>
+					</div>
+				</div>
+				<div class="contentContainer buyingHistory"
+					ng-show="buyingHistoryShow">
+					<h2>Buying History</h2>
+					<hr>
+					<table class="table" style="width: 90%">
+						<thead>
+							<tr>
+								<th>Transaction ID</th>
+								<th>Transaction Time</th>
+								<th>Static</th>
+								<th>Carrier</th>
+								<th>Tracking Number</th>
+								<td>Amount</td>
+								<td>Qty</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>2354321</td>
+								<td>01-04-2015</td>
+								<td>Complete</td>
+								<td>UPS</td>
+								<td>1234567</td>
+								<td>$100</td>
+								<td>10</td>
+							</tr>
+							<tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="contentContainer sellingHistory"
+					ng-show="sellingHistoryShow">
+					<h2>Selling History</h2>
+					<hr>
+					<table class="table" style="width: 90%">
+						<thead>
+							<tr>
+								<th>Transcation ID</th>
+								<th>Transaction Time</th>
+								<th>Static</th>
+								<th>Carrier</th>
+								<th>Tracking Number</th>
+								<td>Amount</td>
+								<td>Qty</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>12312312</td>
+								<td>01-04-2015</td>
+								<td>Complete</td>
+								<td>UPS</td>
+								<td class="trackingNumber">
+									<div class="input-group" style="width: 200px"
+										ng-hide="haveTrackingNumber">
+										<input type="text" class="form-control"
+											placeholder="Tracking Number" ng-model="trackingNumber">
+										<span class="input-group-btn">
+											<button class="btn btn-default" type="button"
+												ng-click="haveTrackingNumber = true">sumbit</button>
+										</span>
+									</div>
+									<div ng-show="haveTrackingNumber">{{trackingNumber}}</div>
+								</td>
+								<td>$100</td>
+								<td>10</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="contentContainer favourite" ng-show="favouriteShow">
+					<h2 style="margin-left: 20px; display: inline">Favourite</h2>
+					<hr style="margin-right: 20px; margin-left: 20px">
+					<div id="submissionTable"
+						style="margin-left: 80px; overflow: scroll; height: 500px">
+						<div class="submissionBox">
+							<div>
+								<img src="images/sample.png" style="width: 100%; height: 100%">
+							</div>
+							<div style="text-align: center;">Sample</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		</div>

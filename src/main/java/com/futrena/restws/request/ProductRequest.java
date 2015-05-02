@@ -17,6 +17,7 @@ public class ProductRequest {
     private float width;
     private String productMaterial;
     private Date createDate;
+    private String designer;
 
     public String getProductName() {
         return productName;
@@ -97,4 +98,14 @@ public class ProductRequest {
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
+
+	public String getDesigner() {
+		return designer;
+	}
+
+	public void setDesigner(String designer) {
+		this.designer = designer;
+	}
+    
+    
 }

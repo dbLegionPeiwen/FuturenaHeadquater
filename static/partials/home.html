@@ -9,57 +9,36 @@
     <div ng-show="showLogin==true" style="position: absolute; left: 0; top: -550px; width: 100%; height: 1000px; background-color: black; z-index: 999999"></div>
     <div class="headSection">
     <div>
-        <nav id="homeNav">
-            <a id="submit" ui-sref="submission"><div><i class="fa fa-flag"></i> SUBMIT YOUR PRODUCT</div></a>
-
-            <a id="webName" href=""ng-click="nameShow=false"><div>FUTRENA</div></a>
-
-            <a id="shoppingCart" href=""><div><i class="fa fa-shopping-cart"></i> CART</div></a>
+        <nav class="homeNav">
+            <a ng-show="currentUser != null" id="submit" ui-sref="submission"><div><i class="fa fa-flag"></i> SUBMIT YOUR PRODUCT</div></a>
+            <a ng-show="false" id="submitWantedButton" ui-sref="submissionWanted"><div><i class="fa fa-star"></i> SUBMIT YOUR WANTED</div></a>
+            <a class="webName" style="position: absolute; left: 64%" ng-click="nameShow=false"><div>FUTRENA</div></a>			
+			<a ng-show="currentUser != null" ui-sref="user({email: currentUser})" style="color: orange; font-size: 20px;position: absolute; right: 10%; top: 10px"><div><i class="fa fa-user"></i>  {{currentUser}}</div></a>
+            <a ng-show="currentUser != null" id="shoppingCart" ui-sref="shoppingCart"><div><i class="fa fa-shopping-cart"></i> CART</div></a>
         </nav>
     </div>
-        <div id="titleSection">
+    
+
+        <div id="titleSection">        	
             <div class="overlay">
-                <div class="title">
-                        FUTRENA
-                <div id="slogan">Modern to Future</div>
-                </div>
-                <div class="content" id="firstContent" style="font-weight:lighter">
-                    <div style="font-size:33px; color:rgb(255,255,255)">Fashion</div>
-                    <div>
-                        <div style="display:inline-block; font-size:50px; margin-left:-10%;color:white">Luxury</div>
-                        <div style="display:inline-block; font-size:30px; margin-left:20%; color:rgb(255,255,255)">Arts</div>
-                    </div>
-                    <div>
-                        <div style="font-size:33px; color:rgb(255,255,255)">High-tech</div>
-                        <div style="font-size:38px; color:rgb(255,255,255);margin-left:30%">Crafts</div>
-                    </div>
-                    <div style="font-size:23px; color:rgb(255,255,255); margin-right:30%">Autos</div>
-                </div>
-                <div class="content" id="secondContent" style="font-weight:lighter">
-                    <div style="margin-left:130px;margin-top:10px">The world is an ARENA</div>
-                    <div style="margin-right:130px;margin-top:10px">Submit your FUTURE</div>
-                    <a style="font-size:20px;color:white">...Read more</a>
-                </div>
-                <div class="content" id="thirdContent" style="font-size:30px; font-weight:lighter">
-                    <div>Distribute our products, &#945% becomes easy.</div>
-                </div>
-                <div id="homepageButtons" style="margin-top:50px">
-                    <div id="previous">&#10094 PREV</div>
-                    <input class="button" type="button" value="SKIP" id="slideHide">
-                    <div id="next">NEXT &#10095</div>
+                <div id="homepageButtons" style="margin-top:38%;">
+                    <div id="previous" style="color:rgb(255,153,0)">&#10094&nbsp&nbsp&nbsp</div>
+                    <input class="button" type="button" value="SKIP" id="slideHide" style="border-style:none;background-color:rgb(255,153,0);color:rgb(255,255,255);border-radius:0px">
+                    <div id="next" style="color:rgb(255,153,0)">&nbsp&nbsp&nbsp&#10095</div>
                 </div>
             </div>
-            <div class="imageMain">
-                <img src="images/banner4.jpg" style="height:700px"/>
-                <img src="images/banner5.jpg" style="height:700px"/>
-                <img src="images/banner3.jpg" style="height:700px"/>
+            <div class="imageMain" id="slides">
+                <img src="images/banner4.jpg" style="height:800px">
+                <img src="images/slide2.png" style="height:100%;width:100%">
+                <img src="images/slide3.jpg" style="height:100%;width:100%">
             </div>
         </div>
         <div class="viewNavigator">
             <ul>
-                <a class="link" href="" ng-class="a1" ng-click="a1='selected'; a2='unselected';changeProductState('released')">RELEASED PRODUCT</a>
                 <a class="filter" ng-click="filterShow = !filterShow"><i class="fa fa-search"></i></a>
-                <a class="link" href="" ng-class="a2" ng-click="a2='selected'; a1='unselected';changeProductState('testing')">TEST-STAGE PRODUCT</a>
+                <a class="link" href="" ng-class="a1" ng-click="a1='selected'; a2='unselected';a3='unselected';changeProductState('released')">RELEASED PRODUCT</a>
+                <a class="link" href="" ng-class="a2" ng-click="a2='selected'; a1='unselected'; a3='unselected';changeProductState('testing')">TEST-STAGE PRODUCT</a>
+                <a class="link" href="" ng-class="a3" ng-click="a3='selected'; a2='unselected'; a1='unselected';changeProductState('wanted')">WANTED LIST</a>
             </ul>
             <div style="width: 90%; height: 2px; background-color: #bbbbbb; margin-left: auto; margin-right: auto"></div>
         </div>
@@ -73,7 +52,7 @@
                         <li><a class="link font first selected" ng-click="filterName = 'HIGH-TECH'" href="">ENTERTAINMENT & GAMING</a></li>
                         <li><a class="link font second unselected" ng-click="filterName = 'LIVING & OFFICE'" href="">LIVING & OFFICE</a></li>
                         <li><a class="link font third unselected" href="" ng-click="filterName = 'ARTS & CRAFTS'">ARTS & CRAFTS</a></li>
-                        <li><a class="link font fourth unselected" href="" ng-click="filterName = 'LIFESTYLE & FASHION'">LIFESTYLE $ FASHION</a></li>
+                        <li><a class="link font fourth unselected" href="" ng-click="filterName = 'LIFESTYLE & FASHION'">LIFESTYLE & FASHION</a></li>
                         <li><a class="link font fifth unselected" href="" ng-click="filterName = 'AUTO TECH'">AUTO TECH</a></li>
                         <li class="divider"></li>
                     </ul>
@@ -89,7 +68,8 @@
         <product class="block" ng-repeat="product in productsFactory" ng-init="productInitial(product.productName, product.productID)"></product>
     </div>
     <div style="clear: both"></div>
-    <a style="font-size: 18px; color:rgb(255,153,0)" ng-show="!loginSuccess" href="" ng-click="showLoginPanel()">SIGN IN TO VIEW MORE</a>
+    <br><br>
+    <a style="font-size: 18px; color:rgb(255,153,0)" ng-show="!loginSuccess" ng-click="showLoginPanel()">SIGN IN TO VIEW MORE</a>
     <br>
     <br>
 </div>

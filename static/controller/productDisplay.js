@@ -32,8 +32,7 @@ angular
 								else
 									$scope.inFavourates = false;
 							});
-
-							$scope.currentImageUrl = "/images/car1.jpeg";
+						
 
 							$scope.showProduct = null;
 
@@ -41,14 +40,22 @@ angular
 									.get("/product/" + $stateParams.productID)
 									.success(
 											function(_p) {
+
 												if (_p) {
 													$scope.showProduct = _p;
+													console.log($scope.showProduct);
 													var tempUrl = "https://www.youtube.com/embed/"
 															+ _p.videoURL;
 													$scope.videoUrl = $sce
 															.trustAsResourceUrl(tempUrl);
+										            $scope.currentImageUrl = "/UploadImages/"+$scope.showProduct.productID+"0.jpeg";
+										            $scope.imgurl1 = '/UploadImages/'+$scope.showProduct.productID+'1.jpeg';
+										            $scope.imgurl2 = '/UploadImages/'+$scope.showProduct.productID+'2.jpeg';
+										            $scope.imgurl3 = '/UploadImages/'+$scope.showProduct.productID+'3.jpeg';
+										            $scope.imgurl4 = '/UploadImages/'+$scope.showProduct.productID+'4.jpeg';
 												}
 											});
+
 
 							$scope.addToCart = function() {
 								var url = "/shoppingCart/123@123.com/"

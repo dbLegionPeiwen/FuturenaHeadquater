@@ -33,7 +33,12 @@ public class User {
     private String country;
     private String postal;
     private String resetToken;
-    
+    private String paypalAccount;
+    private String stripeAccessToken;
+    private String stripeRefreshToken;
+    private String stripePublishableKey;
+    private String stripeUserId;
+        
     public String getUserId()
     {
         return userId;
@@ -188,5 +193,47 @@ public class User {
     {
         this.resetToken = resetToken;
     }
+
+	public String getPaypalAccount() {
+		return paypalAccount;
+	}
+
+	public void setPaypalAccount(String paypalAccount) {
+		this.paypalAccount = paypalAccount;
+	}
+
+	public String getStripeAccessToken() {
+		return stripeAccessToken;
+	}
+
+	public void setStripeAccessToken(String stripeAccessToken) {
+		this.stripeAccessToken = stripeAccessToken;
+	}
+
+	public String getStripeRefreshToken() {
+		return stripeRefreshToken;
+	}
+
+	public void setStripeRefreshToken(String stripeRefreshToken) {
+		this.stripeRefreshToken = stripeRefreshToken;
+	}
+
+	public String getStripePublishableKey() {
+		return stripePublishableKey;
+	}
+
+	public void setStripePublishableKey(String stripePublishableKey) {
+		this.stripePublishableKey = stripePublishableKey;
+	}
+
+	public String getStripeUserId() {
+		return stripeUserId;
+	}
+
+	public void setStripeUserId(String stripeUserId) {
+		this.stripeUserId = stripeUserId;
+	}
+    
+    
 
 }

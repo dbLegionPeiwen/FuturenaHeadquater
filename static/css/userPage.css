@@ -1,23 +1,82 @@
-#userPage .sidebar{
+#userPage .sidebarUser{
 	float:left;
-	width:15%;
-	height:100vh;
-	margin-top:5px;
-	margin-left	:5px;
-	background-color:black;
+	height:75vh;
+	position: absolute;
+	top: 80px;
+	left: 7%;
+	background-color: #1a2933;
+	width: 18%;
+	
 }
 
-#userPage .title{
+.sidebarUser .title{
+	color: orange;
+	font-size:22px;
+	cursor: pointer;
+	margin-left:20px;
+	font-weight:normal;
+}
+
+.sidebarUser .sideItem{
+	font-size:18px;
+	color: orange;
+	cursor: pointer;
+	padding-left: 20px;
+	margin-top:-10px;
+}
+
+.sidebarUser .sideItemAlt{
+	font-size:16px;
+	font-weight:lighter;
+	margin-top: 0px;
 	color: white;
-	font-size:28px;
-	cursor:pointer;
 }
 
-#userPage .sideItem:hover{
-	text-decoration: none;
+.sidebarUser .firstAlt{
+	margin-top: -10px;
+}
+/*----------------------------------------------------------------*/
+#userPage .pageContent{
+	position: absolute;
+	top: 80px;
+	left: 25%;
+	height:85vh;
+	width:900px;	
+	background-color: white;
+	border-width: 1px;
 }
 
-#userPage .sideItemAlt{
-	font-size:20px;
+.profileChange{
+	display:inline-block;
+	margin-right: 20px;
+	margin-top:20px;
 }
+
+.contentContainer{
+	margin-left:30px;
+}
+
+.password{
+	margin-left:80px;
+}
+
+/*--------------------------------------------------------------*/
+.submissionBox{
+	height:150px;
+	width:150px;
+	border-style:solid;
+	border-width:1px;
+	border-radius:5px;
+	float:left;
+	margin-right:10px;
+	margin-top:10px;
+	overflow:scroll;
+}
+
+#userPage {
+	background-color: #eee;
+	width: 100%;
+	height: 100vh;
+}
+
 
