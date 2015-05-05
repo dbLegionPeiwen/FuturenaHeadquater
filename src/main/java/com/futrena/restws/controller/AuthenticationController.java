@@ -145,7 +145,7 @@ public class AuthenticationController
     	try {
     		Authentication auth=authenticationDao.findByEmail(email);
     		authenticationDao.delete(auth);
-    		return new ResponseEntity<Object>("success",HttpStatus.OK);
+    		return new ResponseEntity<Object>(auth,HttpStatus.OK);
     	}
     	
     	catch(Exception ex) {

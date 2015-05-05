@@ -10,7 +10,7 @@ public interface TransactionHistoryDao  extends CrudRepository<TransactionHistor
     List<TransactionHistory> findByProductCartID(String productCartID);
     List<TransactionHistory> findByTransactionID(String transactionID);
     List<TransactionHistory> findByPaypalAccount(String paypalAccount);
-    List<TransactionHistory> findByPaypalToken(String paypalToken);
+    //List<TransactionHistory> findByPaypalToken(String paypalToken);
     List<TransactionHistory> findBySeller(String seller);
     List<TransactionHistory> findByBuyer(String buyer);
 }

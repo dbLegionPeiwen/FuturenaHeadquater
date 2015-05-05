@@ -32,6 +32,7 @@ public class Product {
     private float deliveryFeeUS;
     private float deliveryFeeCA;
     private float deliveryFeeCH;
+    private long imageNumber;
 
     public String getProductID() {
         return productID;
@@ -192,5 +193,15 @@ public class Product {
     public void setDeliveryFeeCH(float deliveryFeeCH) {
         this.deliveryFeeCH = deliveryFeeCH;
     }
+
+	public long getImageNumber() {
+		return imageNumber;
+	}
+
+	public void setImageNumber(long imageNumber) {
+		this.imageNumber = imageNumber;
+	}
+    
+    
  
 }

@@ -51,14 +51,14 @@ public class PaymentServices {
 	@Autowired
 	private ProductRateDao productRateDao;
 	
-	@Autowired
-	private UserPaymentDao userPayment;
+//	@Autowired
+//	private UserPaymentDao userPayment;
 	
 	@Autowired
 	private ShoppingCartDao shoppingCartDao;
 	
-	@Autowired
-	private UserTransactionDao userTransactionDao;
+//	@Autowired
+//	private UserTransactionDao userTransactionDao;
 	   
 	@PersistenceContext
 	private EntityManager  entityManager;

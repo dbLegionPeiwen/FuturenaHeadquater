@@ -5,20 +5,7 @@
 <login id="loginPanel"></login>
 
 <div id="home">
-
-    <div ng-show="showLogin==true" style="position: absolute; left: 0; top: -550px; width: 100%; height: 1000px; background-color: black; z-index: 999999"></div>
     <div class="headSection">
-    <div>
-        <nav class="homeNav">
-            <a ng-show="currentUser != null" id="submit" ui-sref="submission"><div><i class="fa fa-flag"></i> SUBMIT YOUR PRODUCT</div></a>
-            <a ng-show="false" id="submitWantedButton" ui-sref="submissionWanted"><div><i class="fa fa-star"></i> SUBMIT YOUR WANTED</div></a>
-            <a class="webName" style="position: absolute; left: 64%" ng-click="nameShow=false"><div>FUTRENA</div></a>			
-			<a ng-show="currentUser != null" ui-sref="user({email: currentUser})" style="color: orange; font-size: 20px;position: absolute; right: 10%; top: 10px"><div><i class="fa fa-user"></i>  {{currentUser}}</div></a>
-            <a ng-show="currentUser != null" id="shoppingCart" ui-sref="shoppingCart"><div><i class="fa fa-shopping-cart"></i> CART</div></a>
-        </nav>
-    </div>
-    
-
         <div id="titleSection">        	
             <div class="overlay">
                 <div id="homepageButtons" style="margin-top:38%;">
@@ -28,50 +15,74 @@
                 </div>
             </div>
             <div class="imageMain" id="slides">
-                <img src="images/banner4.jpg" style="height:800px">
-                <img src="images/slide2.png" style="height:100%;width:100%">
-                <img src="images/slide3.jpg" style="height:100%;width:100%">
+                <img src="images/slide2.jpg" style="height:100%;width:100%">
+                <img src="images/slide2.jpg" style="height:100%;width:100%">
+                <img src="images/slide3.jpg" style="height:750px;width:100%">
             </div>
         </div>
-        <div class="viewNavigator">
-            <ul>
-                <a class="filter" ng-click="filterShow = !filterShow"><i class="fa fa-search"></i></a>
-                <a class="link" href="" ng-class="a1" ng-click="a1='selected'; a2='unselected';a3='unselected';changeProductState('released')">RELEASED PRODUCT</a>
-                <a class="link" href="" ng-class="a2" ng-click="a2='selected'; a1='unselected'; a3='unselected';changeProductState('testing')">TEST-STAGE PRODUCT</a>
-                <a class="link" href="" ng-class="a3" ng-click="a3='selected'; a2='unselected'; a1='unselected';changeProductState('wanted')">WANTED LIST</a>
-            </ul>
-            <div style="width: 90%; height: 2px; background-color: #bbbbbb; margin-left: auto; margin-right: auto"></div>
-        </div>
-        <div style="background-color: white; position: relative;">
-        <div class="productNavigator" ng-show="filterShow === true">
-            <div class="input-group">
-                <div class="input-group-btn">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false" id="display">{{filterName}} <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a class="link font first selected" ng-click="filterName = 'HIGH-TECH'" href="">ENTERTAINMENT & GAMING</a></li>
-                        <li><a class="link font second unselected" ng-click="filterName = 'LIVING & OFFICE'" href="">LIVING & OFFICE</a></li>
-                        <li><a class="link font third unselected" href="" ng-click="filterName = 'ARTS & CRAFTS'">ARTS & CRAFTS</a></li>
-                        <li><a class="link font fourth unselected" href="" ng-click="filterName = 'LIFESTYLE & FASHION'">LIFESTYLE & FASHION</a></li>
-                        <li><a class="link font fifth unselected" href="" ng-click="filterName = 'AUTO TECH'">AUTO TECH</a></li>
-                        <li class="divider"></li>
-                    </ul>
-                </div><!-- /btn-group -->
-                <span class="input-group-addon" id="sizing-addon1">Last {{timeScale}} days</span>
-                <input type="text" class="form-control" aria-label="...">
-            </div><!-- /input-group -->
-            <div id="timeSlide"><input type="range" min="1" max="31" value="1" step="5" ng-model="timeScale"></div>
-        </div>
-        </div>
     </div>
-    <div class="productBoard">
-        <product class="block" ng-repeat="product in productsFactory" ng-init="productInitial(product.productName, product.productID)"></product>
+
+
+    <div class="sideBar">
+        <div class="logo">
+            <img src="images/logo.png" style="height: 100px; width:270px">
+        </div>
+        <div class="navBar">
+            <div>
+                <img src="images/store.png" style="weight: 25px; height: 25px; position: relative;left: -45%; top: 20px;">
+                <div style="background-color: rgb(252,200,69); height: 1px; margin-top: 22px"></div>
+                <div style="text-align: left; margin-left: 30px; margin-top: 10px; width: 100%">
+                    <a style= "color: white; font-size: 18px;" ng-click="goSubmission()">Submit Your Product</a><br>
+                    <a style= "color: white; font-size: 18px; margin-top: 100px; width: 100%" ng-click="goWanted()">Submit Your Wanted</a>
+                </div>
+            </div>
+            <div>
+                <img src="images/cart.png" style="weight: 25px; height: 25px; position: relative;left: -45%; top: 10px;">
+                <div style="background-color: rgb(252,200,69); height: 1px; margin-top: 12px"></div>
+                <div style="text-align: left; margin-left: 30px; margin-top: 10px; width: 100%">
+                    <a class="link" href="" ng-class="a1" ng-click="a1='selected'; a2='unselected';a3='unselected';changeProductState('released')">Released Product</a><br>
+                    <a class="link" href="" ng-class="a2" ng-click="a2='selected'; a1='unselected'; a3='unselected';changeProductState('testing')">Test-Stage Product</a><br>
+                    <a class="link" href="" ng-class="a3" ng-click="a3='selected'; a2='unselected'; a1='unselected';changeProductState('wanted')">Wanted List</a><br>
+                </div>
+            </div>
+            <div>
+                <img src="images/search.png" style="weight: 25px; height: 25px; position: relative; top: 10px;left: -7%">
+                <input type="text" style="position: relative; top: 10px; width: 190px; border: 1px solid rgb(252,200,69);left: -7%">
+                <div style="background-color: rgb(252,200,69); height: 1px; margin-top: 12px"></div>
+
+                <div style="text-align: left; margin-left: 30px; margin-top: 10px; width: 100%">
+                    <div style="color: white; font-size: 16px">Filter By:</div>
+                    <a style= "color: white; font-size: 18px;">Fashion & Life Style</a><br>
+                    <a style= "color: white; font-size: 18px;">Gadgets & Gear</a><br>
+                    <a style= "color: white; font-size: 18px;">Arts & Crafts</a><br>
+                    <a style= "color: white; font-size: 18px;">Home & Office</a><br>
+
+                </div>
+            </div>
+            <br>
+
+            <a style="font-size: 18px; color:rgb(255,153,0)" ng-show="currentUser == null;" ng-click="showLoginPanel()">SIGN IN TO VIEW MORE</a>
+            <br>
+
+            <div style="text-align: left; width: 100%; margin-top: 50px">
+                <img src="images/user.png" style="weight: 90px; height: 90px">
+                <div style="position: relative; top: -78px; left: 120px;">
+                    <a ui-sref="user({email: currentUser})" style= "color: white; font-size: 16px;">{{currentUser}}</a><br>
+                    <a ng-click="logout()" ng-show="currentUser" style= "color: white; font-size: 16px;">Log Out</a><br>
+                    <a style= "color: white; font-size: 16px;">User Rulebook</a><br>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div id="productBoard">
+        <div style="margin-left: 55px">
+            <product class="block" ng-repeat="product in productsFactory" ng-init="productInitial(product.productName, product.productID)"></product>
+        </div>
     </div>
     <div style="clear: both"></div>
     <br><br>
-    <a style="font-size: 18px; color:rgb(255,153,0)" ng-show="!loginSuccess" ng-click="showLoginPanel()">SIGN IN TO VIEW MORE</a>
-    <br>
-    <br>
+
 </div>
 </div>
 

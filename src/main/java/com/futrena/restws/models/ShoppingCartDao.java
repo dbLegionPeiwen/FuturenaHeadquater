@@ -10,5 +10,6 @@ import java.util.List;
 public interface ShoppingCartDao extends CrudRepository<ShoppingCart, Long>{
 
     List<ShoppingCart> findByBuyerEmail(String buyerEmail);
+    List<ShoppingCart> findByProductCartID(String productCartID);
 
 }

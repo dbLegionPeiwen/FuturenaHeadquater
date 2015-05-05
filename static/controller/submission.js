@@ -20,10 +20,12 @@ angular.module('controller')
     var buffer = [];
     $scope.imageBinding;
     var count=1;
+    $scope.imageNumber = 0;
+
+    if ($rootScope.currentUser == null) $state.go("home");
 
     if ($rootScope.previewProductID != null){
-        var url = "product/"+$rootScope.previewProductID
-       $http.get(url).success(function(_p){
+       $http.get("product/"+$rootScope.previewProductID).success(function(_p){
            $scope.productName = _p.productName;
            $scope.details = _p.description;
            $scope.videoUrl = _p.videoURL;
@@ -39,9 +41,17 @@ angular.module('controller')
         upLoading();
     })
 
+
     function upLoading() {
         var filesUp = document.getElementById("uploadButton");
         var text ="";
+        var size = filesUp.files[0].size;
+
+        if (size > 2000000) {
+            console.log(size);
+            alert("Image size can not be larger than 2MB");
+            return;
+        }
         
         if(filesUp.files.length <= 5 && filesUp.files.length > 0) {
             $scope.imagesFilled = true;
@@ -61,7 +71,9 @@ angular.module('controller')
                 $('#uploadButton').val('');
                 if(buffer.indexOf(e.target.result) === -1 || buffer.length === 0){
                     buffer.push(e.target.result);
+                    
                     $scope.imageBuffer = buffer;
+                    $scope.imageNumber = $scope.imageNumber + 1;
                 }											
                 else return;
                 if(buffer.length < 5) {
@@ -81,12 +93,12 @@ angular.module('controller')
                     }
                 }
             }
-            imageReader.readAsDataURL(filesUp.files[i]);
+            imageReader.readAsDataURL(filesUp.files[i]);    
         }
     }
 
     $(".displayImage").click(function(){
-        console.log($(this).attr("src"));
+
         if($(this).attr("src")!=="images/1.jpg"){
            var bufferIndex =  buffer.indexOf($(this).attr("src"));
            buffer.splice(bufferIndex,1);
@@ -101,7 +113,7 @@ angular.module('controller')
         
     $scope.submitProduct = function(){
 
-        $scope.date = new Date()
+        $scope.date = new Date();
         var product = {
                 productName: $scope.productName,
                 description: $scope.details,
@@ -113,13 +125,14 @@ angular.module('controller')
                 width:  $scope.widthP,
                 productMaterial: $scope.material,
                 createDate: $scope.date,
-                designer: $rootScope.currentUser
+                designer: $rootScope.currentUser,
+                imageNumber: $scope.imageNumber
         }
 
         if (!$rootScope.previewProductID){
 
             $http.post("/product/add",product).success(function(_d){
-                console.log(_d);
+
             	$http.post('upload', {
             		buffer: $scope.imageBuffer,
             		productID: _d.productID

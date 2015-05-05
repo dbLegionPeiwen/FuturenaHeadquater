@@ -1,30 +1,49 @@
 <div id="productDisplayPanel">
+
 	<div class="productDisplayPanelHeader">
 		<a ui-sref="home"
-			style="font-size: 40px; position: absolute; left: 5%; top: 0; color: white">Futrena</a>
+			style="font-size: 40px; position: absolute; left: 5%; top: 0; color: orange">FUTRENA</a>
 		<a ui-sref="user({email: currentUser})" style="color: orange; font-size: 30px;position: absolute; right: 10%; top: 10px"><div><i class="fa fa-user"></i>  {{currentUser}}</div></a>
 	</div>
+
 	<div class="productMainImage"
 		ng-click="currentImageUrl='/UploadImages/'+showProduct.productID+'0.jpeg'">
 		<img src={{currentImageUrl}} height="100%" width="100%">
 	</div>
 
 	<div style="margin-top: 10px; margin-left: 5%">
-		<div class="productSmallImage" style="margin-left: 0"
-			ng-click="currentImageUrl='/UploadImages/'+showProduct.productID+'1.jpeg'">
-			<img src={{imgurl1}} height="100%" width="100%">
+		<div ng-show="imgurl[0] != null" class="productSmallImage" style="margin-left: 0"
+			ng-click="currentImageUrl=imgurl[0]">
+			<img src={{imgurl[0]}} height="100%" width="100%">
 		</div>
-		<div class="productSmallImage"
-			ng-click="currentImageUrl='/UploadImages/'+showProduct.productID+'2.jpeg'">
-			<img src={{imgurl2}} height="100%" width="100%">
+		<div ng-show="imgurl[1] != null" class="productSmallImage"
+			ng-click="currentImageUrl=imgurl[1]">
+			<img src={{imgurl[1]}} height="100%" width="100%">
 		</div>
-		<div class="productSmallImage"
-			ng-click="currentImageUrl='/UploadImages/'+showProduct.productID+'3.jpeg'">
-			<img src={{imgurl3}} height="100%" width="100%">
+		<div ng-show="imgurl[2] != null" class="productSmallImage"
+			ng-click="currentImageUrl=imgurl[2]">
+			<img src={{imgurl[2]}} height="100%" width="100%">
 		</div>
-		<div class="productSmallImage"
-			ng-click="currentImageUrl='/UploadImages/'+showProduct.productID+'4.jpeg'">
-			<img src={{imgurl4}} height="100%" width="100%">
+		<div ng-show="imgurl[3] != null" class="productSmallImage"
+			ng-click="currentImageUrl=imgurl[3]">
+			<img src={{imgurl[3]}} height="100%" width="100%">
+		</div>
+	</div>
+
+	<div class="productDetail">
+		<div class="productDescription">
+			<h3 style="font-weight: 100">Description:</h3>
+			<p style="word-break: normal">{{showProduct.description}}</p>
+		</div>
+		<br>
+
+		<div class="productSpecification">
+			<h3 style="font-weight: 100">Specification:</h3>
+			<br>
+			<P>Height: {{showProduct.height}}</P>
+			<P>Length: {{showProduct.length}}</P>
+			<p>Width: {{showProduct.width}}</p>
+			<P>Material: {{showProduct.material}}</P>
 		</div>
 	</div>
 
@@ -47,33 +66,23 @@
 		<div class="productPrice">
 			<p>Price: ${{showProduct.price}}</p>
 		</div>
-		<p style="font-size: 20px">Quantity:</p>
-		<select></select><br><br> 
+		<div ng-show = "stateJudgement()">
+			<p style="font-size: 20px">Quantity:</p>
+			<select></select><br><br>
 		
-		<a ng-click="addFavourate()" ng-show="inFavourates == false"><i class="fa fa-heart-o fa-2x"><i style="font-size: 15px">Wishlist</i></i></a>
-		<a ng-click="removeFavourate()" ng-show="inFavourates == true"><i class="fa fa-heart fa-2x"><i style="font-size: 15px">Wishlist</i></i></a> 
-		<a style="margin-left: 20px" data-toggle="popover"><i class="fa fa-share-alt fa-2x"><i style="font-size: 15px">Distribute</i></i></a>
-		<br><br><a><i class="fa fa-star"><i style="font-size: 10px">Learn Distribute to earn lifetime INCOME </i></i></a>
+			<a ng-click="addFavourate()" ng-show="inFavourates == false"><i class="fa fa-heart-o fa-2x"><i style="font-size: 15px">Wishlist</i></i></a>
+			<a ng-click="removeFavourate()" ng-show="inFavourates == true"><i class="fa fa-heart fa-2x"><i style="font-size: 15px">Wishlist</i></i></a> 
+			<a style="margin-left: 20px" data-toggle="popover"><i class="fa fa-share-alt fa-2x"><i style="font-size: 15px">Distribute</i></i></a>
+			<br><br><a><i class="fa fa-star"><i style="font-size: 10px">Learn Distribute to earn lifetime INCOME </i></i></a>
 
-		<br><button ng-click="addToCart()" class="btn btn-success" style="margin-left: 70%;width: 150px">Add to Cart</button>
-	</div>
-
-	<div class="productDetail">
-		<div class="productDescription">
-			<h3 style="font-weight: 100">Description:</h3>
-			<p style="word-break: normal">{{showProduct.description}}</p>
+			<br><button ng-click="addToCart()" class="btn btn-success" style="margin-left: 70%;width: 150px">Add to Cart</button>
 		</div>
-		<br>
-
-		<div class="productSpecification">
-			<h3 style="font-weight: 100">Specification:</h3>
-			<br>
-			<P>Height: {{showProduct.height}}</P>
-			<P>Length: {{showProduct.length}}</P>
-			<p>Width: {{showProduct.width}}</p>
-			<P>Material: {{showProduct.material}}</P>
+		<div class="alert alert-warning" role="alert" ng-show = "!stateJudgement()" style="font-size: 35px">
+			<strong>Product State: </strong>
+			{{showProduct.productState}}
 		</div>
 	</div>
+
 
 	<iframe style="position: relative; left: 64px; top: 30px;" width="610"
 		height="400" src={{videoUrl}} frameborder="0" allowfullscreen></iframe>

@@ -67,6 +67,7 @@
      position: relative;
      left: 63px;
      z-index: -1;
+     clear: both;
 }
 
 .productTitle {
@@ -106,8 +107,8 @@
 }
 
 #product {
-	width: 520px;
-    height: 450px;
+	width: 450px;
+    height: 350px;
     background-color: black;
     text-align: center;
     color: white;

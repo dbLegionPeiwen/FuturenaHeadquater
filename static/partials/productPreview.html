@@ -10,24 +10,24 @@
 		<img src={{currentImageUrl}} height="100%" width="100%">
 	</div>
 
-	<div style="margin-top: 10px; margin-left: 5%">
-		<div class="productSmallImage" style="margin-left: 0"
-			ng-click="currentImageUrl='/UploadImages/'+previewProduct.productID+'1.jpeg'">
-			<img src={{imgurl1}} height="100%" width="100%">
-		</div>
-		<div class="productSmallImage"
-			ng-click="currentImageUrl='/UploadImages/'+previewProduct.productID+'2.jpeg'">
-			<img src={{imgurl2}} height="100%" width="100%">
-		</div>
-		<div class="productSmallImage"
-			ng-click="currentImageUrl='/UploadImages/'+previewProduct.productID+'3.jpeg'">
-			<img src={{imgurl3}} height="100%" width="100%">
-		</div>
-		<div class="productSmallImage"
-			ng-click="currentImageUrl='/UploadImages/'+previewProduct.productID+'4.jpeg'">
-			<img src={{imgurl4}} height="100%" width="100%">
-		</div>
-	</div>
+    <div style="margin-top: 10px; margin-left: 5%">
+        <div ng-show="imgurl[0] != null" class="productSmallImage" style="margin-left: 0"
+            ng-click="currentImageUrl=imgurl[0]">
+            <img src={{imgurl[0]}} height="100%" width="100%">
+        </div>
+        <div ng-show="imgurl[1] != null" class="productSmallImage"
+            ng-click="currentImageUrl=imgurl[1]">
+            <img src={{imgurl[1]}} height="100%" width="100%">
+        </div>
+        <div ng-show="imgurl[2] != null" class="productSmallImage"
+            ng-click="currentImageUrl=imgurl[2]">
+            <img src={{imgurl[2]}} height="100%" width="100%">
+        </div>
+        <div ng-show="imgurl[3] != null" class="productSmallImage"
+            ng-click="currentImageUrl=imgurl[3]">
+            <img src={{imgurl[3]}} height="100%" width="100%">
+        </div>
+    </div>
 
     <div class="productInfo">
 

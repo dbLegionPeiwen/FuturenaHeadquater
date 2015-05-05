@@ -118,6 +118,7 @@ public class ProductController {
                 p.setPrice(product.getPrice());
                 p.setState("pending");
                 p.setDesigner(product.getDesigner());
+                p.setImageNumber(product.getImageNumber());
                 productDao.save(p);
 
                 ProductRate _rate = new ProductRate();

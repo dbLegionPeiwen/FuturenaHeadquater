@@ -28,7 +28,12 @@ angular.module('directives')
 						$("#mainContainer").removeClass("disableScroll");
                     	$("#loginPanel").hide();
                         $("#blackOverlay").hide();
-                        $scope.loginSuccess = true;
+                        $cookieStore.put("user",message.email);
+                        $cookieStore.put("accessToken", message.access_token);
+                        $cookieStore.put("userId", message.user_id);
+                        $rootScope.currentUser = message.email;
+                        $http.defaults.headers.common['Authentication-Header'] = message.access_token; 
+                        
 					}
 
 				})

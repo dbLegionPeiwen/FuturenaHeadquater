@@ -13,6 +13,8 @@ angular
 						function($scope, $http, $stateParams, $sce) {
 
 							console.log("productDisplayPanel");
+
+							$scope.imgurl = [];
 							
 							$(function () {
 								  $('[data-toggle="popover"]').popover({
@@ -43,16 +45,18 @@ angular
 
 												if (_p) {
 													$scope.showProduct = _p;
-													console.log($scope.showProduct);
+									
 													var tempUrl = "https://www.youtube.com/embed/"
 															+ _p.videoURL;
 													$scope.videoUrl = $sce
 															.trustAsResourceUrl(tempUrl);
 										            $scope.currentImageUrl = "/UploadImages/"+$scope.showProduct.productID+"0.jpeg";
-										            $scope.imgurl1 = '/UploadImages/'+$scope.showProduct.productID+'1.jpeg';
-										            $scope.imgurl2 = '/UploadImages/'+$scope.showProduct.productID+'2.jpeg';
-										            $scope.imgurl3 = '/UploadImages/'+$scope.showProduct.productID+'3.jpeg';
-										            $scope.imgurl4 = '/UploadImages/'+$scope.showProduct.productID+'4.jpeg';
+
+									
+										            for (var i=1; i<_p.imageNumber;i++){
+										            	$scope.imgurl.push('/UploadImages/'+$scope.showProduct.productID+i+'.jpeg')
+										            }
+
 												}
 											});
 
@@ -108,6 +112,14 @@ angular
 											if (_f.status == 200)
 												$scope.inFavourates = false;
 										})
+							}
+
+							$scope.stateJudgement= function(){
+								if ($scope.showProduct.productState == "pending") 
+									return false
+								else 
+									return true;
+
 							}
 
 						} ])

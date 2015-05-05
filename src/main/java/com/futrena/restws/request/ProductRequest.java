@@ -18,6 +18,7 @@ public class ProductRequest {
     private String productMaterial;
     private Date createDate;
     private String designer;
+    private long imageNumber;
 
     public String getProductName() {
         return productName;
@@ -106,6 +107,13 @@ public class ProductRequest {
 	public void setDesigner(String designer) {
 		this.designer = designer;
 	}
-    
+
+	public long getImageNumber() {
+		return imageNumber;
+	}
+
+	public void setImageNumber(long imageNumber) {
+		this.imageNumber = imageNumber;
+	}
     
 }
