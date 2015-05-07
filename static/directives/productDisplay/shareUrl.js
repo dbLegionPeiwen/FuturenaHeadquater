@@ -20,8 +20,12 @@ angular.module('directives')
 				'html': true,
 				'container': 'body',
 				'content': function() {
-					var shareContent = 'http://localhost:8000/?user=' + $rootScope.currentUser
-						+ '&productId='+ $stateParams.productID;
+					//var shareContent = 'http://localhost:8000/#/?user=' + $rootScope.currentUser
+					//	+ '&productId='+ $stateParams.productID;
+
+					var shareContent = 'http://localhost:8000/#/share/'
+						+$stateParams.productID  +"&&"+ $rootScope.currentUser;
+
 					$scope.copyContent = shareContent;
 
 					return $compile($("#pop-over-content").html())($scope);

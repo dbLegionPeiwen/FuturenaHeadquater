@@ -118,7 +118,14 @@ angular
 		    
 		    $stateProvider.state('payment',{
 	            url: '/payment',
-	            templateUrl: '/partials/paymentest.html',
+	            templateUrl: '/partials/paymentest.html'
 	    });
+
+			$stateProvider.state('distribute', {
+				//http://localhost:8000/?user=peiwen@dbroslegion.com&productId=79f1b94e-ed5f-4d63-a4dc-9f5a0677aeb9
+			url : '/share/:info',
+			templateUrl : 'partials/productDisplayPanel.html',
+			controller : 'distributeDisplay'
+		});
 
 		})
