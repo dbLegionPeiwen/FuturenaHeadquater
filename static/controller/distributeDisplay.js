@@ -10,16 +10,18 @@ angular
 						'$http',
 						'$stateParams',
 						'$sce',
-						function($scope, $http, $stateParams, $sce) {
+						'$rootScope',
+						'$state',
+						function($scope, $http, $stateParams, $sce,$rootScope,$state) {
 
 							console.log("distributeDisplayPanel")
+							$("#loginPanel").hide();
+							$("#blackOverlay").hide();
 
 							var info = $stateParams.info.split("&&");
 							var productID= info[0].trim();
 							//var user = info[1].trim();
 							//user info which not using right now
-
-
 							$scope.imgurl = [];
 
 							$scope.inFavourates = false;
@@ -60,7 +62,14 @@ angular
 
 
 							$scope.addToCart = function() {
-								var url = "/shoppingCart/123@123.com/"
+
+								if($rootScope.currentUser==null)
+								{
+									$scope.popoutLogin();
+									return;
+								}
+
+										var url = "/shoppingCart/123@123.com/"
 										+ productID + "/addToCart";
 								var data = new Date();
 								var cartProduct = {
@@ -86,6 +95,12 @@ angular
 
 							$scope.addFavourate = function() {
 
+								if($rootScope.currentUser==null)
+								{
+									$scope.popoutLogin();
+									return;
+								}
+
 								var favourate = {
 
 									email : "a@a.com",
@@ -103,6 +118,12 @@ angular
 
 							$scope.removeFavourate = function() {
 
+								if($rootScope.currentUser==null)
+								{
+									$scope.popoutLogin();
+									return;
+								}
+
 								$http.get(
 										"/a@a.com/" + productID
 												+ "/deleteFavourate").success(
@@ -117,6 +138,38 @@ angular
 									return false
 								else 
 									return true;
+
+							}
+
+							$scope.popoutLogin = function()
+							{
+								$(".userSignInUp").css("top",$(window).scrollTop()+150);
+								$("#blackOverlay").css("top",$(window).scrollTop());
+								$("#mainContainer").addClass("disableScroll");
+								$("#loginPanel").show();
+								$("#blackOverlay").show();
+							}
+
+							$scope.homeCheckUser = function()
+							{
+								if($rootScope.currentUser==null)
+								{
+									$scope.popoutLogin();
+									return;
+								}
+
+								$state.go("home");
+							}
+
+							$scope.userPageCheckUser = function()
+							{
+								if($rootScope.currentUser==null)
+								{
+									$scope.popoutLogin();
+									return;
+								}
+
+								$state.go("user({email: currentUser})");
 
 							}
 

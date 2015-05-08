@@ -32,8 +32,12 @@ angular.module('directives')
 				}
 			});
 
-			$scope.testFunction = function() {
-				alert("copied to your clopboard");
+			$scope.checkUser = function() {
+				if($rootScope.currentUser == null){
+					$scope.popoutLogin();
+					$("#pop-over-link").popover('hide');
+				return;
+				}
 			}
 
 
